@@ -5,8 +5,8 @@
 help: ## Show targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-10s %s\n", $$1, $$2}'
 
-format: ## Format Markdown with Prettier (120-char prose wrap)
-	npx -y prettier@3.3.3 --write --prose-wrap always --print-width 120 "**/*.md"
+format: ## Format Markdown with Prettier (one line per paragraph)
+	npx -y prettier@3.3.3 --write --prose-wrap never --print-width 120 "**/*.md"
 
 lint: ## Lint Markdown
 	npx -y markdownlint-cli2 "**/*.md" "#node_modules"

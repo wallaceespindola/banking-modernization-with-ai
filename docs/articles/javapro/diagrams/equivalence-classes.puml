@@ -1,0 +1,74 @@
+@startuml equivalence-classes
+set separator none
+skinparam backgroundColor #ffffff
+skinparam dpi 150
+skinparam defaultFontName Helvetica
+skinparam classFontSize 13
+skinparam shadowing false
+skinparam class {
+  BackgroundColor<<Rule>> #fde2c4
+  BackgroundColor<<Codec>> #d4e8f0
+  BackgroundColor<<Reconciler>> #e6dcf2
+  BackgroundColor<<Record>> #e3f4e1
+  BackgroundColor<<Test>> #eceff1
+  BorderColor #37474f
+  ArrowColor #37474f
+}
+skinparam package {
+  BackgroundColor #fafafa
+  BorderColor #90a4ae
+}
+title BR-INT-001: production classes and the tests that pin them
+
+package "src/test" {
+  class PackedDecimalTest <<Test>> {
+    5 tests: signs, scale, invalid nibbles
+  }
+  class InterestRuleGoldenMasterTest <<Test>> {
+    8 CSV rows + port reconciles
+    + naive port produces breaks
+  }
+  class ReconcilerTest <<Test>> {
+    2 tests: scale, missing accounts
+  }
+  class "golden/monthly-interest.csv" as CSV <<Test>> {
+    illustrative fixture, 8 accounts
+  }
+}
+
+package "src/main/java" {
+  class PackedDecimal <<Codec>> {
+    + {static} decode(field: byte[], scale: int): BigDecimal
+    - {static} digit(nibble, offset): int
+    - {static} signed(unscaled, signNibble): BigDecimal
+  }
+  class InterestRule <<Rule>> {
+    + {static} monthlyInterest(balance, rate): BigDecimal
+    + {static} monthlyInterestNaivePort(balance, rate): BigDecimal
+  }
+  class Reconciler <<Reconciler>> {
+    + {static} reconcile(legacy: Map, modern: Map): Report
+  }
+  class "Reconciler.Report" as Report <<Record>> {
+    compared: int
+    breaks: List<Break>
+    legacyTotal: BigDecimal
+    modernTotal: BigDecimal
+    + equivalent(): boolean
+  }
+  class "Reconciler.Break" as Break <<Record>> {
+    accountId: String
+    legacy: BigDecimal
+    modern: BigDecimal
+    reason: String
+  }
+}
+
+Reconciler .right.> Report : returns
+Report *-down- Break
+PackedDecimalTest .down.> PackedDecimal
+InterestRuleGoldenMasterTest .down.> InterestRule
+InterestRuleGoldenMasterTest .down.> Reconciler
+InterestRuleGoldenMasterTest .right.> CSV : reads
+ReconcilerTest .down.> Reconciler
+@enduml

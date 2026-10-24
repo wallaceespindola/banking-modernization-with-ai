@@ -1,0 +1,14 @@
+flowchart TB
+    subgraph FACTS["Deterministic facts"]
+        direction LR
+        SRC["COBOL, JCL, copybooks,<br/>DDL, scheduler exports"] --> PARSE["Parsers and<br/>static analysis"] --> KG[("Dependency and<br/>data-lineage graph")]
+    end
+    subgraph AI["AI interpretation"]
+        direction LR
+        IDX[("Code and docs index")] --> LLM["LLM agents: summarize,<br/>extract rules, propose boundaries"] --> CAT["Candidate rule catalog<br/>with source links"]
+    end
+    subgraph PROOF["Human approval and proof"]
+        direction LR
+        SME["Domain expert review"] --> TESTS["Characterization tests"] --> ORACLE["Run against legacy<br/>as the oracle"]
+    end
+    FACTS --> AI --> PROOF

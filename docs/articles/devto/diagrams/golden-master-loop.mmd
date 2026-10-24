@@ -1,0 +1,16 @@
+flowchart TB
+    subgraph CAPTURE["1. Capture the oracle"]
+        direction LR
+        RUN["Legacy batch run<br/>INTCALC + ACCTREC"] --> CSV["Golden master<br/>monthly-interest.csv"]
+    end
+    subgraph PORT["2. Port the rule"]
+        direction LR
+        CAT["Rule catalog<br/>BR-INT-001"] --> JAVA["InterestRule.java<br/>RoundingMode.DOWN"]
+    end
+    subgraph CHECK["3. Reconcile"]
+        direction LR
+        REC["Reconciler<br/>zero tolerance,<br/>per account"] --> OK["Equivalent:<br/>the slice moves on"]
+    end
+    CAPTURE --> PORT
+    PORT --> CHECK
+    CHECK -.->|"breaks: back to the catalog entry"| PORT

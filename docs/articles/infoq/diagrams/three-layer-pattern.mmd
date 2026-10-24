@@ -1,0 +1,30 @@
+flowchart TB
+    subgraph FACTS["Layer 1: facts (deterministic tooling)"]
+        direction LR
+        SRC["COBOL, JCL,<br/>copybooks, DDL"] --> PAR["Parsers and<br/>static analysis"]
+        PAR --> GRAPH[("Call and<br/>data-flow graph")]
+    end
+    subgraph INTERP["Layer 2: interpretation (AI)"]
+        direction LR
+        LLM["Model reads graph<br/>and source"] --> CAND["Candidate rule<br/>with file and line"]
+        EVAL["Evaluation set:<br/>precision and recall"] -.->|gates trust| LLM
+    end
+    subgraph APPROVAL["Layer 3: approval (humans and the legacy oracle)"]
+        direction LR
+        SME["Domain expert<br/>sign-off"] --> CHAR["Characterization<br/>tests vs legacy"]
+        CHAR --> REC["Reconciliation and<br/>shadow run"]
+        REC --> CAT[["Rule catalog entry:<br/>status validated"]]
+    end
+    FACTS -->|"reproducible facts"| INTERP
+    INTERP -->|"proposals with provenance"| APPROVAL
+
+    classDef fact fill:#dbeafe,stroke:#1d4ed8,color:#0f172a
+    classDef ai fill:#ede9fe,stroke:#6d28d9,color:#0f172a
+    classDef human fill:#dcfce7,stroke:#15803d,color:#0f172a
+    classDef out fill:#fef3c7,stroke:#b45309,color:#0f172a
+    class SRC,PAR,GRAPH fact
+    class LLM,CAND,EVAL ai
+    class SME,CHAR,REC human
+    class CAT out
+    classDef layer fill:#f8fafc,stroke:#94a3b8,color:#0f172a
+    class FACTS,INTERP,APPROVAL layer

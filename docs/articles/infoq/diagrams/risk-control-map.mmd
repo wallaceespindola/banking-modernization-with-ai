@@ -1,0 +1,33 @@
+flowchart TB
+    subgraph RISKS["Risks introduced by AI in discovery"]
+        direction LR
+        R1["Hallucinated rule<br/>or dependency"]
+        R2["Prompt injection<br/>from code comments"]
+        R3["Data leakage<br/>(code, customer data)"]
+        R4["Model drift<br/>after upgrades"]
+    end
+    subgraph CONTROLS["Controls that answer them"]
+        direction LR
+        C1["Ground on parser output;<br/>cite file and line;<br/>expert sign-off"]
+        C2["Treat source as untrusted;<br/>least privilege;<br/>no production write access"]
+        C3["Approved perimeter;<br/>masked or synthetic data;<br/>provider as ICT third party"]
+        C4["Pinned model versions;<br/>stored prompts and outputs;<br/>re-run evaluation set"]
+    end
+    subgraph BACKSTOP["Backstop for every risk"]
+        direction LR
+        B1["Characterization tests,<br/>reconciliation, shadow run"]
+    end
+    R1 --> C1
+    R2 --> C2
+    R3 --> C3
+    R4 --> C4
+    CONTROLS --> BACKSTOP
+
+    classDef risk fill:#fee2e2,stroke:#b91c1c,color:#0f172a
+    classDef ctrl fill:#dbeafe,stroke:#1d4ed8,color:#0f172a
+    classDef back fill:#dcfce7,stroke:#15803d,color:#0f172a
+    class R1,R2,R3,R4 risk
+    class C1,C2,C3,C4 ctrl
+    class B1 back
+    classDef layer fill:#f8fafc,stroke:#94a3b8,color:#0f172a
+    class RISKS,CONTROLS,BACKSTOP layer

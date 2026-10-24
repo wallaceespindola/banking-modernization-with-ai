@@ -1,0 +1,11 @@
+flowchart TB
+    CH["Channels and APIs"] --> GW["API gateway / router"]
+    GW -->|migrated| NEW["New domain service"]
+    GW -->|not yet migrated| ACL["Anti-corruption layer"]
+    ACL --> MF["Mainframe CICS / batch"]
+    MF --> DB2[("DB2 / VSAM<br/>system of record")]
+    DB2 -->|CDC events| BUS[["Event streaming"]]
+    BUS --> NEW
+    NEW --> NDB[("Service database")]
+    NEW -. shadow results .-> REC["Reconciliation and diff engine"]
+    MF -. legacy results .-> REC

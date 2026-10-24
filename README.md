@@ -2,7 +2,7 @@
 
 ![Understand, then modernize](docs/images/banner.png)
 
-[![Apache 2.0 License](https://img.shields.io/badge/License-Apache_2.0-blue)](LICENSE) [![Docs](https://img.shields.io/badge/Written_in-Markdown-000000?logo=markdown)](docs/banking-modernization-with-ai-context.md) [![Diagrams](https://img.shields.io/badge/Diagrams-Mermaid-ff3670?logo=mermaid&logoColor=white)](docs/banking-modernization-with-ai-context.md) [![Domain](https://img.shields.io/badge/Domain-Banking_%7C_Mainframe-0a66c2)](docs/banking-modernization-with-ai-context.md) [![Approach](https://img.shields.io/badge/Approach-AI--assisted_%7C_Human--approved-8957e5)](docs/banking-modernization-with-ai-context.md#4-where-ai-helps) [![Regulation](https://img.shields.io/badge/EU-DORA_aware-003399)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj)
+[![Apache 2.0 License](https://img.shields.io/badge/License-Apache_2.0-blue)](LICENSE) [![Docs](https://img.shields.io/badge/Written_in-Markdown-000000?logo=markdown)](docs/banking-modernization-with-ai-context.md) [![Diagrams](https://img.shields.io/badge/Diagrams-Mermaid-ff3670?logo=mermaid&logoColor=white)](docs/banking-modernization-with-ai-context.md) [![Domain](https://img.shields.io/badge/Domain-Banking_%7C_Mainframe-0a66c2)](docs/banking-modernization-with-ai-context.md) [![Approach](https://img.shields.io/badge/Approach-AI--assisted_%7C_Human--approved-8957e5)](docs/banking-modernization-with-ai-context.md#4-where-ai-helps) [![Regulation](https://img.shields.io/badge/EU-DORA_aware-003399)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) [![Java](https://img.shields.io/badge/Examples-Java_21_%7C_JUnit_5-orange?logo=openjdk&logoColor=white)](examples/java)
 
 The idea: modernizing a bank's legacy core is not a COBOL-to-Java translation job. The hard part is the knowledge buried in the code: decades of interest, fee, rounding, eligibility and reconciliation rules, batch cycles nobody fully remembers, and data formats that break naive conversions. Rewrite before you understand, and you replace a reliable system with a less reliable one.
 
@@ -87,6 +87,21 @@ In short: parsers and static analysis map the estate, AI turns that map into rea
 - **With an AI assistant:** load the file as context (for example, reference it from a `CLAUDE.md` or `.github/copilot-instructions.md`) before asking for discovery plans, ADRs or migration roadmaps. The assistant then starts from the same vocabulary and guardrails.
 - **Writing:** it is the source material for articles and talks on the topic.
 
+## Runnable example
+
+The context says correctness must be proven, so the repo includes one small proof. `examples/cobol/INTCALC.cbl` holds an illustrative interest rule: a `COMPUTE` with no `ROUNDED` phrase, which truncates to two decimals. `examples/java/` ports it to Java 21 and proves the port against a golden master:
+
+- `PackedDecimal` decodes `COMP-3` fields, including sign-nibble validation.
+- `InterestRule` is the legacy-equivalent port (`RoundingMode.DOWN`), next to a naive port with banker's rounding that a reviewer could easily accept.
+- `Reconciler` compares legacy and modern results per account with zero tolerance.
+- `InterestRuleGoldenMasterTest` shows the correct port reconciling and the naive one breaking on 3 of 8 accounts by one cent.
+
+The golden CSV is an illustrative fixture worked out by hand from the COBOL semantics, not data from a real bank. The matching rule catalog entry is in [`docs/templates/rule-catalog-entry.md`](docs/templates/rule-catalog-entry.md).
+
+```bash
+make test   # or: cd examples/java && mvn -q test
+```
+
 ## Related reading
 
 My articles on the same topic:
@@ -103,11 +118,17 @@ External references:
 
 ## Repository layout
 
-| Path                                            | Contents                                 |
-| ----------------------------------------------- | ---------------------------------------- |
-| `docs/banking-modernization-with-ai-context.md` | The modernization context                |
-| `docs/images/banner.png`                        | README banner                            |
-| `Makefile`                                      | `make format`, `make lint`, `make links` |
+| Path | Contents |
+| --- | --- |
+| `docs/banking-modernization-with-ai-context.md` | The modernization context |
+| `docs/templates/rule-catalog-entry.md` | Rule catalog template with the BR-INT-001 worked example |
+| `docs/diagrams/` | Mermaid sources and rendered PNGs |
+| `docs/articles/` | Platform article drafts, banners and diagrams |
+| `docs/presentations/` | Talk deck (Marp source, PDF, PPTX) and import guide |
+| `examples/cobol/` | Illustrative COBOL program and copybook |
+| `examples/java/` | Java 21 port, golden-master tests and reconciler |
+| `docs/images/banner.png` | README banner |
+| `Makefile` | `make diagrams`, `format`, `lint`, `links`, `slides`, `test` |
 
 ## Support
 

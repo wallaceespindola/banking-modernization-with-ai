@@ -25,3 +25,9 @@ target/
 # Agent scratch
 .claude/settings.local.json
 agent-logs/
+
+# Java examples
+target/
+
+# Marp HTML previews
+docs/presentations/*.html

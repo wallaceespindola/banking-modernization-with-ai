@@ -1,0 +1,16 @@
+flowchart TB
+    subgraph S1["Days 1-30: scope"]
+        direction LR
+        A1["One bounded capability"] --> A2["Inventory and<br/>dependency graph"] --> A3["Risks and<br/>baseline metrics"]
+    end
+    subgraph S2["Days 31-60: discover"]
+        direction LR
+        B1["AI-assisted<br/>discovery PoC"] --> B2["Rule catalog with<br/>expert validation"] --> B3["Characterization tests<br/>green on legacy"]
+    end
+    subgraph S3["Days 61-90: prove"]
+        direction LR
+        C1["One slice in<br/>shadow mode"] --> C2["Reconciliation<br/>report"] --> C3["Target architecture<br/>and roadmap"]
+    end
+    S1 -->|"gate: scope and AI use approved"| S2
+    S2 -->|"gate: rules validated"| S3
+    S3 -->|"gate: zero unexplained breaks"| GO["Go/no-go for production traffic"]

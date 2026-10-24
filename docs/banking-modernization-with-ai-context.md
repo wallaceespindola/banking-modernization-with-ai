@@ -55,7 +55,7 @@ Three principles frame everything below:
 ### Risk, governance, and cost
 
 - High availability, disaster recovery, security, access control, and transaction traceability.
-- European obligations such as DORA (Digital Operational Resilience Act, applicable since January 2025): ICT risk management, incident reporting, resilience testing, and ICT third-party risk, including cloud concentration risk and exit strategies.
+- European obligations such as DORA (Digital Operational Resilience Act, applicable since 17 January 2025): ICT risk management, incident reporting, resilience testing, and ICT third-party risk, including cloud concentration risk and exit strategies.
 - Related frameworks to check per institution: EBA guidelines on outsourcing and ICT risk, BCBS 239 (risk data aggregation), GDPR (personal data in test and training sets), PSD2 (payment services), and the EU AI Act where AI touches regulated decisions.
 - Expensive coexistence, vendor dependencies, limited migration windows, and uncertain investment returns.
 - Risk of replacing a reliable mainframe workload with a more complex and less reliable distributed design.
@@ -233,8 +233,8 @@ Define each metric with a baseline in phase 1 and a target agreed with stakehold
 
 ## Key Message
 
-The greatest opportunity for a Solution Architect using AI is to turn undocumented legacy banking systems into understandable, testable, and incrementally modernizable business capabilities — while preserving financial correctness and operational risk controls.
+The greatest opportunity for a Solution Architect using AI is to turn undocumented legacy banking systems into understandable, testable, and incrementally modernizable business capabilities, while preserving financial correctness and operational risk controls.
 
 ---
 
-**Author:** Wallace Espindola, Solution Architect — [wallace.espindola@gmail.com](mailto:wallace.espindola@gmail.com) · [LinkedIn](https://www.linkedin.com/in/wallaceespindola/) · [GitHub](https://github.com/wallaceespindola/)
+**Author:** Wallace Espindola, Solution Architect, [wallace.espindola@gmail.com](mailto:wallace.espindola@gmail.com) · [LinkedIn](https://www.linkedin.com/in/wallaceespindola/) · [GitHub](https://github.com/wallaceespindola/)

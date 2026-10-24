@@ -1,0 +1,43 @@
+flowchart TB
+    subgraph G1["Gate 1, day 30: scope and AI use approved"]
+        direction LR
+        G1A["Business owner<br/>signs the scope"]
+        G1B["Security and risk<br/>approve AI usage"]
+        G1C["Architect<br/>inventory, graph, risk register"]
+        G1A ~~~ G1B ~~~ G1C
+    end
+    subgraph G2["Gate 2, day 60: rules validated"]
+        direction LR
+        G2A["Domain expert<br/>approves each rule"]
+        G2B["Architect<br/>data mapping, boundaries"]
+        G2C["Engineering<br/>characterization suite<br/>green on legacy"]
+        G2A ~~~ G2B ~~~ G2C
+    end
+    subgraph G3["Gate 3, day 90: zero unexplained breaks"]
+        direction LR
+        G3A["Engineering<br/>reconciliation report"]
+        G3B["Operations<br/>shadow-mode behavior"]
+        G3C["Architect<br/>ADRs, target architecture"]
+        G3A ~~~ G3B ~~~ G3C
+    end
+    subgraph GO["Go/no-go for production traffic"]
+        direction LR
+        GOA["Business owner"]
+        GOB["Risk and compliance"]
+        GOC["Operations"]
+        GOA ~~~ GOB ~~~ GOC
+    end
+    G1 --> G2 --> G3 --> GO
+
+    classDef arch fill:#dbe4ff,stroke:#3b5bdb,color:#1c2a5e
+    classDef biz fill:#fff3bf,stroke:#e67700,color:#5c3d00
+    classDef dom fill:#d3f9d8,stroke:#2f9e44,color:#0b3d17
+    classDef eng fill:#e5dbff,stroke:#7048e8,color:#2b1a66
+    classDef risk fill:#ffe3e3,stroke:#e03131,color:#5c0a0a
+    classDef ops fill:#c5f6fa,stroke:#0c8599,color:#06363d
+    class G1C,G2B,G3C arch
+    class G1A,GOA biz
+    class G2A dom
+    class G2C,G3A eng
+    class G1B,GOB risk
+    class G3B,GOC ops

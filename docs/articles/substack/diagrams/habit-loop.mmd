@@ -1,0 +1,12 @@
+flowchart TB
+    subgraph BEFORE["Before anyone writes the port"]
+        direction LR
+        A["1. Capture legacy outputs<br/>real batch run, masked inputs"] --> B["2. Characterization tests<br/>the outputs become the expected values"]
+    end
+    subgraph AFTER["After the port exists"]
+        direction LR
+        C["3. Port the rule<br/>by a person or with AI"] --> D["4. Reconcile to the cent<br/>per account and in total"]
+    end
+    BEFORE --> AFTER
+    D -->|"equivalent"| E["Slice moves on"]
+    D -.->|"break: fix the rule, not the test"| C

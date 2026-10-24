@@ -1,0 +1,14 @@
+flowchart TB
+    START(["Same legacy program"])
+    subgraph REWRITE["Rewrite first"]
+        direction TB
+        A1["Translate COBOL to Java"] --> A2["Write tests from<br/>the new code"] --> A3["Cut over in one weekend"] --> A4["Find the differences<br/>in production"] --> R1["Equivalence assumed"]
+    end
+    subgraph UNDERSTAND["Understand first"]
+        direction TB
+        B1["Extract rules<br/>with source links"] --> B2["Domain expert sign-off"] --> B3["Legacy outputs<br/>as the test oracle"] --> B4["Shadow run and<br/>reconciliation"] --> R2["Equivalence proven,<br/>then decommission"]
+    end
+    START --> REWRITE
+    START --> UNDERSTAND
+    style REWRITE fill:#fdecec,stroke:#c0392b
+    style UNDERSTAND fill:#eaf6ee,stroke:#2e8b57

@@ -1,0 +1,15 @@
+flowchart TB
+    subgraph UNDERSTAND["1. Understand"]
+        direction LR
+        L["Legacy estate<br/>COBOL, JCL, copybooks,<br/>DB2, VSAM"] --> D["Discover<br/>parsers + AI summaries"] --> R["Extract rules<br/>AI candidates +<br/>expert sign-off"]
+    end
+    subgraph PROVE["2. Prove and move"]
+        direction LR
+        T["Characterize<br/>legacy as test oracle"] --> M["Modernize one slice<br/>strangler + ACL"] --> V["Verify<br/>shadow run +<br/>reconciliation"]
+    end
+    subgraph DONE["3. Finish"]
+        direction LR
+        C["Cut over"] --> X["Decommission<br/>the legacy part"]
+    end
+    UNDERSTAND --> PROVE
+    PROVE -->|"equivalent (breaks go back to the rules)"| DONE

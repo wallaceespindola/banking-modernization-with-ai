@@ -1,0 +1,39 @@
+@startuml golden-master-flow
+skinparam backgroundColor #ffffff
+skinparam dpi 150
+skinparam defaultFontName Helvetica
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #37474f
+  LifeLineBorderColor #90a4ae
+  ParticipantBorderColor #37474f
+  ParticipantBackgroundColor #d4e8f0
+}
+title portReconcilesWithLegacyRun and naivePortWithBankersRoundingProducesBreaks
+
+participant "InterestRuleGoldenMasterTest" as T
+participant "monthly-interest.csv\n(illustrative fixture)" as CSV
+participant "rule under test\n(BinaryOperator)" as R
+participant "Reconciler" as REC
+participant "Report" as REP
+
+T -> CSV : goldenRows()
+CSV --> T : 8 rows: account, balance, rate, legacy
+loop for each row
+  T -> T : legacy.put(account, legacy_monthly_interest)
+  T -> R : apply(balance, rate)
+  R --> T : modern amount
+  T -> T : modern.put(account, amount)
+end
+T -> REC : reconcile(legacy, modern)
+REC -> REC : union of account ids (TreeSet)\ncompareTo per account, zero tolerance
+REC -> REP : new Report(compared, breaks, totals)
+REP --> T : report
+alt InterestRule::monthlyInterest (RoundingMode.DOWN)
+  T -> REP : equivalent()
+  REP --> T : true, no breaks
+else InterestRule::monthlyInterestNaivePort (HALF_EVEN)
+  T -> REP : breaks()
+  REP --> T : ACC-0001, ACC-0004, ACC-0007\n(each off by one cent)
+end
+@enduml

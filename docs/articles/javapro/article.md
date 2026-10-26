@@ -1,3 +1,9 @@
+<!--
+Submission metadata
+Keywords: COBOL, COMP-3, BigDecimal, RoundingMode, golden master, characterization tests, reconciliation
+Summary: Port one COBOL interest rule to Java 21 and prove it matches the legacy output to the cent with COMP-3 decoding, BigDecimal and JUnit golden-master tests.
+-->
+
 ![Dark grid of square tiles with a scattered trail of bright green tiles on the right and the words Every cent, tested on the left](banner.png)
 
 # From a COBOL COMPUTE to tested Java 21: proving equivalence to the cent
@@ -9,7 +15,7 @@
 
 ## Abstract
 
-A COBOL interest calculation can be one `COMPUTE` statement, and its Java port can still be wrong in ways a code review won't catch: the picture clause sets the scale, a missing `ROUNDED` means truncation, and the inputs arrive as packed decimal bytes. This article walks through a small Java 21 module that ports one rule, BR-INT-001 (monthly interest accrual), and proves it matches the legacy output to the cent. It covers `COMP-3` decoding with sign-nibble validation, `BigDecimal` with explicit scale and `RoundingMode.DOWN`, a golden-master test with `@CsvFileSource`, zero-tolerance reconciliation with `compareTo`, and a naive port kept as a negative test. It is written for the people who will read the diff.
+A COBOL interest calculation can be one `COMPUTE` statement, and its Java port can still be wrong in ways a code review won't catch: the picture clause sets the scale, a missing `ROUNDED` means truncation, and the inputs arrive as packed decimal bytes. This article walks through a small Java 21 module that ports one rule, BR-INT-001 (monthly interest accrual), and proves it matches the legacy output to the cent. It covers `COMP-3` decoding with sign-nibble validation, `BigDecimal` with explicit scale and `RoundingMode.DOWN`, a golden-master test with `@CsvFileSource`, zero-tolerance reconciliation with `compareTo`, and a naive port kept as a negative test. It is written for Java developers and reviewers who own a port like this one, and for the architects who have to sign off that it is equivalent. Two limits stay open on purpose. The closed-account branch (`ACCT-ACTIVE`) is not ported in the example, and intermediate precision, which depends on COBOL compiler options, is pinned by the characterization tests rather than derived. The article shows how both gaps stay visible next to a green build.
 
 ---
 
@@ -53,7 +59,7 @@ Three things matter for the port. The receiving field is `PIC S9(11)V99`, so the
            05  ACCT-ANNUAL-RATE        PIC S9(3)V99  COMP-3.
 ```
 
-The copybook is shared with other batch programs, so it is an implicit contract. It tells you what the program doesn't: balance and rate are `COMP-3` (packed decimal), and the rate is an annual percentage. The divisor 1200 is twelve months times one hundred percent. The rule catalog entry for BR-INT-001 (`docs/templates/rule-catalog-entry.md`) adds that closed accounts accrue nothing, that the result is truncated toward zero, and that intermediate precision depends on compiler options and is pinned by the characterization tests.
+The copybook is shared with other batch programs, so it is an implicit contract. It tells you what the program doesn't: balance and rate are `COMP-3` (packed decimal), with two implied decimals each. The rule catalog entry for BR-INT-001 (`docs/templates/rule-catalog-entry.md`) supplies the meaning: the rate is an annual percentage, so the divisor 1200 is twelve months times one hundred percent. The entry also records that closed accounts accrue nothing, that the result is truncated toward zero, and that intermediate precision depends on compiler options and is pinned by the characterization tests.
 
 ![Class diagram: PackedDecimal, InterestRule and Reconciler with its Report and Break records in src/main/java, each pinned by a test class in src/test, with the golden-master test reading the illustrative CSV](diagrams/equivalence-classes.png)
 
@@ -166,7 +172,7 @@ public final class InterestRule {
 
 Scale 2 comes from `V99`. `RoundingMode.DOWN` means toward zero, which matters for overdrafts: `-1.6658...` must become `-1.66`, while `FLOOR` would give `-1.67`. No `double` appears anywhere, which is the rule the repository applies to all money.
 
-`multiply` without a `MathContext` is exact, so precision is lost only in the single `divide`, where scale and rounding are stated. COBOL intermediate precision depends on compiler options, as the comment says, and the Java code doesn't guess it: the characterization tests pin the legacy output, and if they disagree with this line, the line changes. The second method, `monthlyInterestNaivePort`, uses `HALF_EVEN`, the mode many Java developers reach for when they hear "money". It stays in the class so the suite can prove it wrong.
+`multiply` without a `MathContext` is exact, so precision is lost only in the single `divide`, where scale and rounding are stated. COBOL intermediate precision depends on compiler options, as the comment says, and the Java code doesn't guess it: the characterization tests pin the legacy output, and if they disagree with this line, the line changes. The second method, `monthlyInterestNaivePort`, uses `HALF_EVEN`, the mode a reviewer is most likely to accept as correct for money. It stays in the class so the suite can prove it wrong.
 
 ## The golden master: legacy output as the oracle
 
@@ -362,7 +368,7 @@ Green tests don't show that the closed-account branch was never ported, or that 
 
 ## Running it
 
-The module needs Java 21 and Maven. From the repository root, or directly in the module:
+The module targets Java 21 (`maven.compiler.release` is 21) and was tested on Java 21. It needs Maven. From the repository root, or directly in the module:
 
 ```bash
 make test
@@ -388,7 +394,7 @@ Proving a port equivalent to the cent comes down to decisions a reviewer can che
 - banking-modernization-with-ai (context document, rule catalog template, COBOL and Java examples), [GitHub](https://github.com/wallaceespindola/banking-modernization-with-ai)
 - Java SE 21 API: `java.math.BigDecimal`, [docs.oracle.com](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)
 - Java SE 21 API: `java.math.RoundingMode`, [docs.oracle.com](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/RoundingMode.html)
-- JUnit 5 User Guide: parameterized tests and `@CsvFileSource`, [junit.org](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
+- JUnit 5 User Guide: parameterized tests and `@CsvFileSource`, [junit.org](https://junit.org/junit5/docs/5.11.4/user-guide/#writing-tests-parameterized-tests)
 - Michael Feathers, Working Effectively with Legacy Code (characterization tests), [O'Reilly](https://www.oreilly.com/library/view/working-effectively-with/0131177052/)
 
 ---
@@ -407,12 +413,11 @@ When you review a port of financial logic, what evidence do you ask for before y
 
 **Examples repository:** every example in this article (the `INTCALC` program and `ACCTREC` copybook, the BR-INT-001 rule catalog entry, `PackedDecimal`, `InterestRule`, `Reconciler`, the three test classes and the illustrative golden CSV) is in <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
-Need more tech insights?
-Check out my GitHub, LinkedIn, and Speaker Deck.
+Need more tech insights?\
+Check out my GitHub, LinkedIn, and Speaker Deck.\
 Happy coding!
 
-Wallace Espindola, Solution Architect
-
-- GitHub: <https://github.com/wallaceespindola/>
-- LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>
-- Speaker Deck: <https://speakerdeck.com/wallacese>
+Wallace Espindola, Solution Architect\
+GitHub: <https://github.com/wallaceespindola/>\
+LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
+Speaker Deck: <https://speakerdeck.com/wallacese>

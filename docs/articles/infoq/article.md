@@ -1,5 +1,5 @@
 <!--
-Meta description: A pattern for AI in core banking modernization: deterministic tools establish facts, AI interprets them, and experts and the legacy system approve.
+Meta description: A pattern for AI in core banking modernization: deterministic tools establish the facts, AI interprets them and experts plus the legacy system approve.
 Tags: legacy modernization, core banking, COBOL, AI-assisted discovery, characterization testing, DORA, software architecture
 -->
 
@@ -10,7 +10,7 @@ Tags: legacy modernization, core banking, COBOL, AI-assisted discovery, characte
 **Key Takeaways**
 
 - AI is most useful in core banking modernization when it works on the slow part of the job, understanding what the legacy code does, and least useful when it is asked to translate COBOL into Java line by line.
-- A pattern is taking shape in which deterministic parsers and static analysis establish the facts, AI interprets those facts into candidate business rules and domain experts and the legacy system as test oracle approve them.
+- This article describes a pattern in which deterministic parsers and static analysis establish the facts, AI turns those facts into candidate business rules and approval comes from domain experts plus the legacy system as test oracle.
 - Every AI-extracted rule needs provenance (source file and lines, model and prompt version) and an evaluation set of programs with known rules, so extraction precision and recall are measured before the pipeline is trusted on unknown code.
 - Financial equivalence is shown with evidence: characterization tests against the legacy system, zero-tolerance reconciliation at record, account balance and general-ledger level, plus a parallel run that covers at least one full business cycle.
 - Under DORA, the model provider is one more ICT third party, and prompt injection through code comments, leakage of source or customer data and model drift need explicit controls before AI touches a regulated estate.
@@ -27,7 +27,7 @@ Tags: legacy modernization, core banking, COBOL, AI-assisted discovery, characte
 
 Banks keep mainframe workloads running for good reasons. They are fast, stable and audited. What erodes is the knowledge around them: the engineers who understand the interest, fee, rounding, eligibility and reconciliation rules retire, and the rules were rarely written down outside the code. Tests are thin, dependencies hide in shared copybooks, files and job schedules, and every change carries risk.
 
-Two responses dominate the discussion. The first is the big-bang replacement, a new core system with a single cut-over weekend. The second is automated refactoring, where a tool converts COBOL into Java or C# at scale. The second option has a known failure mode, sometimes called "JOBOL": Java that keeps the COBOL structure, coupling and batch assumptions, with none of the benefits of the new platform. Large language models make that second option faster, and the speed is tempting. The slow part of these programs has always been understanding what the existing system does and proving that the new one does the same, and faster code generation does not shorten it.
+Two responses dominate the discussion. The first is the big-bang replacement, a new core system with a single cut-over weekend. The second is automated refactoring, where a tool converts COBOL into Java or C# at scale. The second option has a known failure mode, sometimes called "JOBOL": Java that keeps the COBOL structure, coupling and batch assumptions, with none of the benefits of the new platform. Large language models make that second option faster, and the speed is tempting. The slow part of these programs has always been understanding what the existing system does and proving that the new one does the same, and faster code generation doesn't shorten it.
 
 This article describes a pattern that addresses that bottleneck. It separates three kinds of work: establishing facts about the legacy estate, interpreting those facts into business rules and approving those rules as the behavior the bank must keep. Each kind of work has a different owner and a different source of authority. The short form, used throughout the companion repository, is "AI proposes, deterministic tooling verifies, humans approve."
 
@@ -47,7 +47,7 @@ What is new is the middle step. Between "here is the code" and "here are the tes
 
 The pattern assigns each layer of work to the kind of tooling or person that can be held to account for it.
 
-![Three stacked layers: deterministic parsers turn COBOL, JCL, copybooks and DDL into a call and data-flow graph; an AI model reads the graph and source to produce candidate rules with file and line, gated by an evaluation set; domain experts sign off, characterization tests run against legacy, reconciliation and shadow runs follow, and the result is a validated rule catalog entry](diagrams/three-layer-pattern.jpg)
+![Three stacked layers: deterministic parsers build a dependency graph, an AI model proposes candidate rules from it and experts plus legacy tests approve them into a validated rule catalog entry.](diagrams/three-layer-pattern.jpg)
 
 *Figure 1: Facts, interpretation and approval as separate layers. Blue: deterministic tooling. Purple: AI. Green: humans and the legacy system as oracle. Amber: the artifact that records the approved rule.*
 
@@ -63,7 +63,7 @@ When a regulator, an auditor or an incident review asks why a migrated capabilit
 
 ### A rule catalog with provenance
 
-The rule catalog is the central artifact. Each entry describes one business rule found in the legacy code, and AI can draft it. A domain expert approves it, and it is not complete until it links to the tests that prove the modern implementation matches the legacy one. Here are the main fields of the worked example, trimmed from the repository's template:
+The rule catalog is the central artifact. Each entry describes one business rule found in the legacy code, and AI can draft it. A domain expert approves it, and it isn't complete until it links to the tests that prove the modern implementation matches the legacy one. Here are the main fields of the worked example, trimmed from the repository's template:
 
 ```markdown
 ## BR-INT-001: Monthly interest accrual
@@ -117,7 +117,7 @@ Rounding is one of several data-definition traps. Packed decimal (`COMP-3`) stor
 
 Characterization tests cover selected inputs. Reconciliation covers volume. The context document describes three levels, each per business date: individual records, account balances and general-ledger totals. The tolerance policy for amounts is normally zero, and someone has to sign that policy off explicitly.
 
-The repository's `Reconciler` illustrates the record and total levels. It compares legacy and modern results per account and reports a break for any difference, including an account that appears on only one side. Missing accounts matter as much as wrong amounts, because a record dropped during migration does not show up in a field-by-field comparison of the records that did arrive. The general-ledger level adds the check finance teams care about most: the totals posted per business date agree.
+The repository's `Reconciler` covers the account level plus an aggregate total. It compares legacy and modern results per account and reports a break for any difference, including an account that appears on only one side. It also checks that the legacy and modern totals agree. Missing accounts matter as much as wrong amounts, because a record dropped during migration doesn't show up in a field-by-field comparison of the records that did arrive. The general-ledger level isn't in the repository. It adds the check finance teams care about most, that the totals posted per business date agree, and a real program has to build it against its own ledger.
 
 ### Shadow runs and parallel runs
 
@@ -133,9 +133,9 @@ In practice, that means the architect chooses the first capability (valuable eno
 
 ## Governance under DORA and the EU AI Act
 
-Regulation shapes this pattern more than it shapes most AI adoption in software teams. The EU's [Digital Operational Resilience Act](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) (Regulation (EU) 2022/2554) applies since 17 January 2025. It covers ICT risk management, incident reporting, resilience testing and ICT third-party risk, including cloud concentration risk and exit strategies. For an AI-assisted modernization program, the direct consequence is that the model provider is an ICT third party like any other. The companion context recommends registering it as one, running models inside the bank's approved perimeter (private endpoints or on-premises) and securing contractual guarantees on data retention and training use.
+Regulation shapes this pattern more than it shapes most AI adoption in software teams. The EU's [Digital Operational Resilience Act](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) (Regulation (EU) 2022/2554) has applied since 17 January 2025. It covers ICT risk management, incident reporting, resilience testing and ICT third-party risk, including cloud concentration risk and exit strategies. For an AI-assisted modernization program, the direct consequence is that the model provider is an ICT third party like any other. The companion context recommends registering it as one, running models inside the bank's approved perimeter (private endpoints or on-premises) and securing contractual guarantees on data retention and training use.
 
-The EU AI Act is on the list of frameworks to check where AI touches regulated decisions. In the pattern described here, AI does not make the regulated decision. It drafts rules and tests that people approve. That is a deliberate design choice, and it holds only if the experts actually review what they sign. Other frameworks to check per institution include the EBA guidelines on outsourcing and ICT risk, BCBS 239 for risk data aggregation, GDPR for personal data in test and training sets and PSD2 for payment services. This article does not interpret any of them. Each institution's compliance function has to map them to its own program.
+The EU AI Act is on the list of frameworks to check where AI touches regulated decisions. In the pattern described here, AI doesn't make the regulated decision. It drafts rules and tests that people approve. That's a deliberate design choice, and it holds only if the experts actually review what they sign. Other frameworks to check per institution include the EBA guidelines on outsourcing and ICT risk, BCBS 239 for risk data aggregation, GDPR for personal data in test and training sets and PSD2 for payment services. This article does not interpret any of them. Each institution's compliance function has to map them to its own program.
 
 The useful habit is to treat regulatory evidence as a delivery output. ADRs, the rule catalog with its approval states, characterization test results, reconciliation reports and change records are produced by the pipeline as the work happens. A team that has to assemble them afterwards usually finds gaps.
 
@@ -143,7 +143,7 @@ The useful habit is to treat regulatory evidence as a delivery output. ADRs, the
 
 Introducing AI into discovery adds risks that a purely manual or purely tool-driven program does not have. The context document pairs each one with a control.
 
-![Four risks at the top (hallucinated rule or dependency, prompt injection from code comments, data leakage, model drift after upgrades), each mapped to a control (ground on parser output with file and line and expert sign-off; treat source as untrusted with least privilege and no production write access; approved perimeter with masked or synthetic data and the provider treated as an ICT third party; pinned model versions, stored prompts and outputs and a re-run evaluation set), all backed by characterization tests, reconciliation and shadow runs](diagrams/risk-control-map.jpg)
+![Five AI-specific risks, each mapped to one control. All controls rest on a backstop of characterization tests, reconciliation and shadow runs.](diagrams/risk-control-map.jpg)
 
 *Figure 2: Each AI-specific risk has a direct control, and the verification layer acts as a backstop for all of them. Red: risks. Blue: controls. Green: the backstop.*
 
@@ -175,7 +175,7 @@ It also depends on having an oracle. Characterization tests need a legacy system
 
 Some strategies make it less relevant. A capability that will be retained and encapsulated behind an API needs understanding but not equivalence proofs. A commodity capability replaced by a package needs data migration and reconciliation, but the rule extraction effort may be better spent on configuring the package. Dead and duplicated code, which can make up a significant share of an inventory, should be identified and retired, not catalogued.
 
-Finally, the pattern does not remove the need for scarce people. It changes their work from writing everything down to reviewing and approving drafts. If the domain experts are not available for that review, candidate rules accumulate and nothing reaches "validated," however fast the extraction runs.
+Finally, the pattern doesn't remove the need for scarce people. It changes their work from writing everything down to reviewing and approving drafts. If the domain experts are not available for that review, candidate rules accumulate and nothing reaches "validated," however fast the extraction runs.
 
 ## Conclusion
 
@@ -206,12 +206,11 @@ Contact: [wallace.espindola@gmail.com](mailto:wallace.espindola@gmail.com) · [L
 
 **Examples repository:** this article uses the rule catalog template with the BR-INT-001 entry, the illustrative `INTCALC.cbl` program, the golden-master interest tests and the reconciler from <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
-Need more tech insights?
-Check out my GitHub, LinkedIn, and Speaker Deck.
+Need more tech insights?\
+Check out my GitHub, LinkedIn, and Speaker Deck.\
 Happy coding!
 
-Wallace Espindola, Solution Architect
-
-- GitHub: <https://github.com/wallaceespindola/>
-- LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>
-- Speaker Deck: <https://speakerdeck.com/wallacese>
+Wallace Espindola, Solution Architect\
+GitHub: <https://github.com/wallaceespindola/>\
+LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
+Speaker Deck: <https://speakerdeck.com/wallacese>

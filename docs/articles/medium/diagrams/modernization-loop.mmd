@@ -12,4 +12,5 @@ flowchart TB
         C["Cut over"] --> X["Decommission<br/>the legacy part"]
     end
     UNDERSTAND --> PROVE
-    PROVE -->|"equivalent (breaks go back to the rules)"| DONE
+    UNDERSTAND <-.->|"breaks: back to the rules"| PROVE
+    PROVE -->|equivalent| DONE

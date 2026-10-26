@@ -1,7 +1,8 @@
 @startuml equivalence-classes
 set separator none
+allowmixing
 skinparam backgroundColor #ffffff
-skinparam dpi 150
+skinparam dpi 300
 skinparam defaultFontName Helvetica
 skinparam classFontSize 13
 skinparam shadowing false
@@ -31,9 +32,7 @@ package "src/test" {
   class ReconcilerTest <<Test>> {
     2 tests: scale, missing accounts
   }
-  class "golden/monthly-interest.csv" as CSV <<Test>> {
-    illustrative fixture, 8 accounts
-  }
+  file "golden/monthly-interest.csv\nillustrative fixture, 8 accounts" as CSV #eceff1
 }
 
 package "src/main/java" {

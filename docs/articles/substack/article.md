@@ -3,13 +3,13 @@ title: "Let the legacy system grade your homework"
 platform: Substack
 newsletter: Code & Coffee
 author: Wallace Espindola
-description: "Before you trust a COBOL-to-Java port, human or AI-written, capture what the legacy system actually does and make the port match it to the cent. One habit, one rounding example and a Monday plan."
+description: "Before you trust a COBOL-to-Java port, human or AI-written, capture what the legacy system does and make the port match it to the cent. Plus a plan for Monday."
 tags: [legacy-modernization, characterization-tests, cobol, java, banking]
 ---
 
 **Suggested subject line:** Your port looks right. Has the mainframe agreed?
 
-*Preview text: One habit for modernizing banking code: the old system is the test oracle.*
+*Preview text: One habit: the old system is the test oracle.*
 
 ---
 
@@ -19,13 +19,13 @@ tags: [legacy-modernization, characterization-tests, cobol, java, banking]
 
 Hey folks,
 
-A quick picture first. Somebody ports a COBOL interest calculation to Java. Maybe a developer did it by hand, maybe an AI assistant drafted it in a minute. The code is clean, it uses `BigDecimal`, the unit tests pass, and the reviewer approves it. Every check in that story was written by the same people who wrote the port, so it only proves the port agrees with what they thought the rule was.
+A quick picture first. Somebody ports a COBOL interest calculation to Java. Maybe a developer did it by hand, maybe an AI assistant drafted it in a minute. The code is clean, it uses `BigDecimal`, the unit tests pass, and the reviewer approves it. Every check in that story came from the same people who wrote the port, so it only proves the port agrees with what they thought the rule was.
 
-In a bank that's not good enough. The rule that matters is the one the mainframe has been running for decades, including the parts nobody wrote down. So the habit I want to talk about is simple: before you trust any port, let the legacy system grade it. Capture what the old code actually produces, turn that into tests, and make the new code match it to the cent.
+In a bank that's not good enough. The rule that matters is the one the mainframe has been running for years, including the parts nobody wrote down. So the habit I want to talk about is simple: before you trust any port, let the legacy system grade it. Capture what the old code actually produces, turn that into tests, and make the new code match it to the cent.
 
 This issue is the coffee-length version: what the habit looks like, a one-cent example from the companion repo, where it doesn't pay off and what to try on Monday. Everything I show is in [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai).
 
-![The habit loop: capture legacy outputs from a real batch run with masked inputs, turn them into characterization tests, then port the rule by a person or with AI and reconcile to the cent per account and in total. Equivalent results let the slice move on; a break sends you back to fix the rule, not the test.](diagrams/habit-loop.png)
+![The habit loop: capture legacy outputs from a real batch run with masked inputs, turn them into characterization tests, then port the rule by a person or with AI and reconcile to the cent per account and in total. Equivalent results let the slice move on; a break sends you back to fix the port.](diagrams/habit-loop.png)
 
 ## Who grades the port
 
@@ -105,7 +105,7 @@ The habit has a cost, and it's mostly in step one. Capturing legacy outputs mean
 
 - **Code you plan to retire:** if a function is dead or duplicated, the right move is to switch it off, not to characterize it.
 - **Behavior the business wants to change:** if the new product is supposed to round differently, the golden master tells you where you differ, but it can't tell you the new rule. That still needs an expert.
-- **Outputs you can't reproduce:** results that depend on time of day, external feeds or batch ordering need more work to capture, and record and replay plus a parallel run over a full business cycle (month-end included) does more than a CSV file.
+- **Outputs you can't reproduce:** results that depend on time of day, external feeds or batch ordering need more work to capture. For those, record and replay plus a parallel run over a full business cycle (month-end included) does more than a CSV file.
 - **Small samples:** eight rows show the idea. A production suite needs representative and edge-case inputs, and property-based tests are worth adding for rounding and accrual.
 
 And none of this replaces reconciliation at the account balance and general-ledger level once a slice runs in shadow mode. Characterization tests catch the cent early, and reconciliation proves nothing else slipped.
@@ -138,12 +138,11 @@ My question for you: what's the smallest legacy rule that surprised you once you
 
 **Examples repository:** this article uses the `INTCALC.cbl` interest rule, the golden CSV and golden-master tests, the reconciler, the BR-INT-001 rule catalog entry and the habit-loop diagram from <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
-Need more tech insights?
-Check out my GitHub, LinkedIn, and Speaker Deck.
+Need more tech insights?\
+Check out my GitHub, LinkedIn, and Speaker Deck.\
 Happy coding!
 
-Wallace Espindola, Solution Architect
-
-- GitHub: <https://github.com/wallaceespindola/>
-- LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>
-- Speaker Deck: <https://speakerdeck.com/wallacese>
+Wallace Espindola, Solution Architect\
+GitHub: <https://github.com/wallaceespindola/>\
+LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
+Speaker Deck: <https://speakerdeck.com/wallacese>

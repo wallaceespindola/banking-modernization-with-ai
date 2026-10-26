@@ -5,8 +5,9 @@ flowchart TB
     end
     subgraph AFTER["After the port exists"]
         direction LR
-        C["3. Port the rule<br/>by a person or with AI"] --> D["4. Reconcile to the cent<br/>per account and in total"]
+        C["Port the rule<br/>by a person or with AI"] --> D["3. Reconcile to the cent<br/>per account and in total"]
     end
     BEFORE --> AFTER
     D -->|"equivalent"| E["Slice moves on"]
-    D -.->|"break: fix the rule, not the test"| C
+    D -.-> F(["break: fix the port"])
+    F -.-> C

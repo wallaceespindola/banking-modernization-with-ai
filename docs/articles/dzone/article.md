@@ -36,16 +36,16 @@ Three principles from the context document frame everything below:
 
 ## Roles and responsibilities
 
-A modernization slice touches business, risk, operations, security and engineering at once. If ownership isn't explicit, every failure ends in "I thought you checked that". The model names six roles:
+A modernization slice touches business, risk, operations, security and engineering at once. If ownership isn't explicit, every failure ends in "I thought you checked that". I use six roles:
 
-- **Business owner:** owns the capability, signs the scope and the business case, and shares the final go/no-go decision.
+- **Business owner:** owns the capability, signs the scope and the business case, and is accountable for the final go/no-go decision.
 - **Solution architect:** reconstructs the current state, defines boundaries and the target and transition architecture, chooses the consistency model per capability, records decisions as ADRs and governs the quality gates.
 - **Domain expert:** the person who knows what the rule is supposed to do. Approves or rejects each candidate rule in the catalog.
 - **Engineering:** builds the characterization suite, the slice and the reconciliation, and runs the AI-assisted tooling under the controls below.
 - **Risk, compliance and security:** approve AI usage and hosting, own the regulatory evidence and agree the tolerance policy.
 - **Operations:** own shadow-mode behavior, runbooks, failover and restart tests, and the batch window.
 
-The table below turns that into a RACI matrix (Responsible, Accountable, Consulted, Informed) across the main activities of one initiative. The assignments are my proposal, derived from the responsibilities in the context document. Adjust them to your own governance structure, but keep one "A" per row.
+The table below turns that into a RACI matrix (Responsible, Accountable, Consulted, Informed) across the main activities of one initiative. The assignments are my proposal, derived from the responsibilities in the context document. Adjust them to your own governance structure, but keep one "A" per row. "C (veto)" marks a required co-signer: consulted, and able to block the decision.
 
 | Activity | Business owner | Architect | Domain expert | Engineering | Risk and compliance | Operations |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -56,9 +56,10 @@ The table below turns that into a RACI matrix (Responsible, Accountable, Consult
 | Validate each rule in the catalog | I | C | A/R | C | | |
 | Characterization suite green on legacy | | A | C | R | I | |
 | Build the slice and run it in shadow mode | | A | C | R | I | C |
+| Shadow-mode operational behavior (batch window, restart, duplicates) | | C | | R | I | A |
 | Reconciliation report | C | A | C | R | C | I |
 | Tolerance policy for differences | C | C | C | | A/R | |
-| Go/no-go for production traffic | A | R | C | C | C | C |
+| Go/no-go for production traffic | A | R | C | C | C (veto) | C (veto) |
 
 Two rows deserve a comment. The domain expert is accountable for rule validation, not the architect and not the model that extracted the rule. If an AI-drafted rule is wrong and gets approved, the approval is the failure, so the approval has to sit with the person who can tell. The tolerance policy sits with risk and compliance because deciding whether a one-cent difference is acceptable is a control question. The context document lists "who signs it off?" as an open question to resolve early, and I'd rather answer it in week one than in week eleven.
 
@@ -66,7 +67,7 @@ Two rows deserve a comment. The domain expert is accountable for rule validation
 
 The 90-day plan has three phases, and the transition between them is where governance does its work. A phase is done when its exit criteria are met and signed, not when its calendar time runs out.
 
-![The 90-day plan in three phases: days 1 to 30 scope one bounded capability, inventory and baseline; days 31 to 60 run AI-assisted discovery, the rule catalog and characterization tests; days 61 to 90 run one slice in shadow mode with a reconciliation report; gates between phases are scope and AI use approved, rules validated and zero unexplained breaks, ending in a go/no-go for production traffic](diagrams/ninety-day-plan.jpg)
+![The 90-day plan in three phases of 30 days (scope, discover, prove), with a gate between each phase and a go/no-go for production traffic at the end](diagrams/ninety-day-plan.jpg)
 
 *Figure 1: The 90-day initiative and the gates between its phases.*
 
@@ -80,7 +81,7 @@ The exit criteria come straight from the plan:
 
 Exit criteria only help if each one has a signer. Here's how I'd assign them:
 
-![Gate sign-off map: gate 1 at day 30 is signed by the business owner for scope, security and risk for AI usage, and the architect for inventory, graph and risk register; gate 2 at day 60 by the domain expert for each rule, the architect for data mapping and boundaries, and engineering for a characterization suite green on legacy; gate 3 at day 90 by engineering for the reconciliation report, operations for shadow-mode behavior and the architect for ADRs and target architecture; the go/no-go for production traffic is decided by the business owner, risk and compliance, and operations](diagrams/gate-signoffs.jpg)
+![Gate sign-off map showing who signs each of the three gates and the go/no-go. The architect signs the engineering evidence and the business owner decides go/no-go with risk and compliance and operations as co-signers with a veto](diagrams/gate-signoffs.jpg)
 
 *Figure 2: Who signs each gate. Proposed assignment.*
 
@@ -89,7 +90,6 @@ Exit criteria only help if each one has a signer. Here's how I'd assign them:
 | Blue | Solution architect |
 | Yellow | Business owner |
 | Green | Domain expert |
-| Purple | Engineering |
 | Red | Risk, compliance and security |
 | Teal | Operations |
 
@@ -97,7 +97,7 @@ Exit criteria only help if each one has a signer. Here's how I'd assign them:
 
 The first gate is about permission, in two senses. The business owner confirms the capability is "valuable enough to matter, bounded enough to finish": a clear owner and available experts, low write coupling to the core ledger (fee calculation, statement generation or customer inquiry rather than posting), outputs that can be compared with legacy results, and visible pain today. Security and risk confirm which AI models and hosting options may be used, and on which data.
 
-That second approval looks like paperwork before the interesting part, and in a bank it's a precondition. Under DORA, which applies since 17 January 2025, the model provider is an ICT third party and belongs in the register. Source code is intellectual property and may contain hard-coded data, so it can't go to an unapproved endpoint. If this gate isn't signed, phase 2 has nothing to run on.
+That second approval looks like paperwork before the interesting part, and in a bank it's a precondition. Under [Regulation (EU) 2022/2554 (DORA)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj), which has applied since 17 January 2025, the model provider is an ICT third party and belongs in the register. Source code is intellectual property and may contain hard-coded data, so it can't go to an unapproved endpoint. If this gate isn't signed, phase 2 has nothing to run on.
 
 The architect's part of the gate is the evidence that the scope is real: an inventory, a dependency graph built by deterministic tools and a risk register. Baseline metrics also belong here. Without a baseline from phase 1, every later claim of improvement is a guess.
 
@@ -120,7 +120,7 @@ The second gate is where AI output becomes, or fails to become, an approved fact
 
 The fields that matter for governance are the status, the provenance ("Extracted by") and the approval. A gate reviewer can read the catalog and see at a glance how many rules are still candidates, which were rejected and who approved the rest. The "Arithmetic" field matters for a different reason. It is the field where a COBOL detail turns into a business decision: COBOL `COMPUTE` without `ROUNDED` truncates to the receiving field's decimals, so the Java port uses `RoundingMode.DOWN` (toward zero). Someone has to confirm that truncation, including on overdraft interest, is intended behavior and not a decades-old bug the bank now has to keep.
 
-The other half of gate 2 is the characterization suite running green against legacy outputs, plus evaluation results for the AI extraction itself (more on that in the controls section). Engineering signs the suite, and the architect signs the data mapping and the proposed service boundaries.
+The other half of gate 2 is the characterization suite running green against legacy outputs, plus evaluation results for the AI extraction itself (more on that in the controls section). The architect signs the suite after engineering produces it green on legacy, and also signs the data mapping and the proposed service boundaries.
 
 ### Gate 3: zero unexplained breaks
 
@@ -137,7 +137,7 @@ public record Report(int compared, List<Break> breaks, BigDecimal legacyTotal, B
 
 The gate passes or fails on that boolean. To show why it has to be strict, the repo keeps a "naive" port of the interest rule that uses `RoundingMode.HALF_EVEN`, the banker's rounding a reviewer would likely accept at first glance. Run against the golden data, it breaks on 3 of the 8 accounts: ACC-0001 (legacy 4.16, naive 4.17), ACC-0004 (3416.66 against 3416.67) and ACC-0007 (-1.66 against -1.67). The golden CSV is an illustrative fixture, worked out by hand from the COBOL semantics and not captured from a real bank. In a real initiative those values come from the legacy batch run, because the legacy system is the oracle.
 
-The gate criterion is "zero unexplained breaks", not "zero breaks". A break can be explained and accepted, for example when the legacy result is a known defect the business decides to fix. But the explanation is a decision with an owner, recorded against the tolerance policy, not a comment in a pull request. Operations signs the shadow-mode behavior (batch window, restart, duplicate handling) and the architect signs the ADRs and the target and transition architecture.
+The gate criterion is "zero unexplained breaks", not "zero breaks". A break can be explained and accepted, for example when the legacy result is a known defect the business decides to fix. But the explanation is a decision with an owner, recorded against the tolerance policy, not a comment in a pull request. The architect signs the reconciliation report after engineering produces it. Operations signs the shadow-mode behavior (batch window, restart, duplicate handling) and the architect signs the ADRs and the target and transition architecture.
 
 ## AI controls: every use case has a required control
 
@@ -160,7 +160,7 @@ Read the right-hand column as a list of gate checks. If a gate reviewer can't se
 
 The discovery pipeline shows where the boundary between facts and interpretation sits:
 
-![AI-assisted discovery pipeline in three bands: deterministic facts, where COBOL, JCL, copybooks, DDL and scheduler exports go through parsers and static analysis into a dependency and data-lineage graph; AI interpretation, where a code and docs index feeds LLM agents that summarize, extract rules and propose boundaries into a candidate rule catalog with source links; and human approval and proof, where domain expert review leads to characterization tests run against legacy as the oracle](diagrams/ai-discovery-pipeline.jpg)
+![AI-assisted discovery pipeline in three bands: deterministic facts, AI interpretation and human approval and proof against the legacy oracle](diagrams/ai-discovery-pipeline.jpg)
 
 *Figure 3: Deterministic tools produce the facts, the LLM explains and reasons over them, and humans approve while tests prove.*
 
@@ -187,7 +187,7 @@ The governance rule I'd defend hardest is the timing one: go/no-go criteria for 
 7. **Regulatory path:** the notification or approval requirements for material ICT changes are known and the evidence (ADRs, test evidence, reconciliation reports, change records) is produced by the pipeline, not assembled afterwards.
 8. **Decommissioning:** a plan and a date for each legacy component the slice replaces. During coexistence the bank pays for both platforms, so the plan has to decommission, not only build.
 
-The business owner, risk and compliance, and operations take the decision together, with the architect presenting the evidence against the list. If a criterion turns out to be wrong during the build, change it through the same weekly architecture and risk checkpoint, record the change as an ADR and say why. That keeps the list honest without freezing it.
+The business owner is accountable for the decision. Risk and compliance and operations are required co-signers with a veto, so there is no go without both of them. The architect presents the evidence against the list. If a criterion turns out to be wrong during the build, change it through the same weekly architecture and risk checkpoint, record the change as an ADR and say why. That keeps the list honest without freezing it.
 
 ## What to measure
 
@@ -235,12 +235,11 @@ How does your organization decide when a modernized banking capability is allowe
 
 **Examples repository:** the context document (roles, 90-day plan, AI controls and success measures), the BR-INT-001 rule catalog entry, the reconciler, the golden-master test with its illustrative golden data and the diagrams used in this article are in <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
-Need more tech insights?
-Check out my GitHub, LinkedIn, and Speaker Deck.
+Need more tech insights?\
+Check out my GitHub, LinkedIn, and Speaker Deck.\
 Happy coding!
 
-Wallace Espindola, Solution Architect
-
-- GitHub: <https://github.com/wallaceespindola/>
-- LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>
-- Speaker Deck: <https://speakerdeck.com/wallacese>
+Wallace Espindola, Solution Architect\
+GitHub: <https://github.com/wallaceespindola/>\
+LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
+Speaker Deck: <https://speakerdeck.com/wallacese>

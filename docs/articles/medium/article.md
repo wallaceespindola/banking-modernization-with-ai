@@ -1,7 +1,7 @@
 <!--
 Medium metadata
 Tags: Legacy Modernization, Banking, Software Architecture, Artificial Intelligence, COBOL
-Meta description: The hard part of banking modernization is the knowledge buried in the code and the proof of equivalence. AI lowers the cost of understanding, not of correctness.
+Meta description: The hard part of banking modernization is the knowledge buried in the code and proving equivalence. AI lowers the cost of understanding, not of correctness.
 -->
 
 # The hard part of banking modernization was never the COBOL
@@ -28,7 +28,13 @@ All the examples here come from a companion repository, [banking-modernization-w
 
 When people talk about mainframe modernization, the conversation drifts toward languages very quickly. COBOL to Java, COBOL to C#, which converter, which target framework. I understand why. The language is the visible part, and it is the part a tool can measure: lines in, lines out.
 
-But think about what makes a change to a bank's core slow and risky today. The [context document](https://github.com/wallaceespindola/banking-modernization-with-ai/blob/main/docs/banking-modernization-with-ai-context.md) in the repo lists it, and very little of the list is about syntax. Business rules known by a few specialists and documented nowhere else. Thin automated tests. Shared copybooks and shared files acting as implicit contracts between programs that "do not talk to each other". Batch semantics such as cut-off times, end-of-day ordering, checkpoint and restart, "process exactly once per business date". Data definitions full of traps: `COMP-3` packed decimal, `REDEFINES`, implied decimal points, EBCDIC collation that sorts differently from ASCII.
+But think about what makes a change to a bank's core slow and risky today. The [context document](https://github.com/wallaceespindola/banking-modernization-with-ai/blob/main/docs/banking-modernization-with-ai-context.md) in the repo lists it, and very little of the list is about syntax:
+
+- Business rules known by a few specialists and documented nowhere else.
+- Thin automated tests.
+- Shared copybooks and shared files acting as implicit contracts between programs that "do not talk to each other".
+- Batch semantics such as cut-off times, end-of-day ordering, checkpoint and restart, "process exactly once per business date".
+- Data definitions full of traps: `COMP-3` packed decimal, `REDEFINES`, implied decimal points, EBCDIC collation that sorts differently from ASCII.
 
 None of that gets easier because the code is now Java. A line-by-line translation keeps every one of those assumptions and hides them in a language where readers no longer expect them. The context document has a name for the result, "JOBOL": Java that keeps the COBOL structure, coupling and batch assumptions, with none of the benefits. I have nothing against Java (I write a lot of it). My problem is with the idea that changing the language is progress by itself.
 
@@ -66,11 +72,11 @@ So where does AI fit? I think the answer is that it changes the economics of the
 
 Typing Java was never what made these programs slow to replace. Reading them was. Someone had to open the program, follow the copybooks, find the paragraphs that matter, trace which fields flow where, notice the missing `ROUNDED`, and write all of that down in a form a domain expert could confirm. That work is slow, it depends on scarce people, and it is exactly the kind of work current models are good at helping with: summarizing a program, proposing candidate rules, explaining a data flow in plain language, generating edge cases for tests.
 
-The repo has a rule catalog template with one worked example, BR-INT-001, for this interest rule. The entry carries a plain-language rule a domain expert can confirm, the inputs with their PIC clauses, the arithmetic ("no `ROUNDED` phrase, so the result is truncated toward zero to two decimals"), the edge cases (negative balances, zero, sub-cent results, maximum balance), the source location, who extracted it and with which model and prompt version, who approved it, and links to the tests. I think that entry is the right shape for AI output in this work. AI can draft most of it. A domain expert approves it. The entry is not done until it links to the tests that prove the modern code matches.
+The repo has a rule catalog template with one worked example, BR-INT-001, for this interest rule. The entry carries a plain-language rule a domain expert can confirm, the inputs with their PIC clauses, the arithmetic ("no `ROUNDED` phrase, so the result is truncated toward zero to two decimals"), the edge cases (negative balances, zero, sub-cent results, maximum balance), the source location, fields for who extracted it (with which model and prompt version, recorded in a discovery log) and who approved it (the worked example keeps the name out), and links to the tests. I think that entry is the right shape for AI output in this work. AI can draft most of it. A domain expert approves it. The entry is not done until it links to the tests that prove the modern code matches.
 
 The other thing I'd want any reader to notice is where the facts come from. The discovery pipeline in the context document puts deterministic parsers and static analysis first. They produce the dependency and data-lineage graph. The model explains and reasons over that graph instead of producing it. That keeps the dependency facts reproducible and pushes the risk of hallucination into the interpretation layer, where a person reviews it anyway. Every AI output carries its provenance: model and prompt version, source files and line ranges.
 
-![The modernization loop in three stages: understand (legacy estate, discovery with parsers and AI summaries, rule extraction with expert sign-off), prove and move (characterize with legacy as test oracle, modernize one slice with strangler and anti-corruption layer, verify with shadow run and reconciliation), then finish (cut over and decommission the legacy part); breaks go back to the rules](diagrams/modernization-loop.png)
+![The modernization loop in three stages: understand (legacy estate, discovery with parsers and AI summaries, rule extraction with expert sign-off), prove and move (characterize with legacy as test oracle, modernize one slice with strangler and anti-corruption layer, verify with shadow run and reconciliation), and, once equivalent, finish (cut over and decommission the legacy part); a dashed link marked breaks: back to the rules joins understand and prove](diagrams/modernization-loop.png)
 
 *The loop from the repo. AI sits mostly in the first stage. The second stage is where equivalence is decided, and it is decided by tests and reconciliation, not by a model.*
 
@@ -126,7 +132,7 @@ I'd be overselling this if I didn't say where it doesn't hold as well.
 
 **The legacy system is the oracle, including its bugs.** Characterization tests capture what the system does, not what it should do. Sometimes the old behavior is a defect the business has lived with. In the worked example the overdraft truncation was confirmed as intended, but that was a decision a person made, not something the test could know. Changing behavior on purpose is a separate, explicit decision, and it should be logged as one.
 
-**Equivalence is narrower than it looks.** My cent example is a single division. Production estates have intermediate precision that depends on compiler options (the Java comment in the repo says to pin it from the characterization tests before changing that line), batch restart semantics, date windowing and encoding conversions. A golden file of eight hand-worked rows shows the idea. It is nowhere near the coverage a real slice needs, which is why the plan calls for record and replay of masked transactions and a full business-cycle parallel run.
+**Equivalence is narrower than it looks.** My cent example is a single division. Production estates have intermediate precision that depends on compiler options (the Java comment in the repo says to pin it from the characterization tests before changing that line), batch restart semantics, century windowing from Y2K remediation and encoding conversions. A golden file of eight hand-worked rows shows the idea. It is nowhere near the coverage a real slice needs, which is why the plan calls for record and replay of masked transactions and a full business-cycle parallel run.
 
 **AI-assisted discovery has to earn trust.** The context document suggests building an evaluation set early, programs whose rules are already known, and measuring extraction precision and recall before relying on the pipeline for unknown code. I don't have numbers from a live rollout to share, and I won't invent any. Until you have your own, treat AI summaries as candidates.
 
@@ -149,12 +155,11 @@ I'm curious where others draw the line. Would you let a model write the characte
 
 **Examples repository:** this article uses the context document, the illustrative `INTCALC` COBOL program, the `InterestRule` Java port with its golden-master test data, the BR-INT-001 rule catalog entry and the modernization loop diagram from <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
-Need more tech insights?
-Check out my GitHub, LinkedIn, and Speaker Deck.
+Need more tech insights?\
+Check out my GitHub, LinkedIn, and Speaker Deck.\
 Happy coding!
 
-Wallace Espindola, Solution Architect
-
-- GitHub: <https://github.com/wallaceespindola/>
-- LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>
-- Speaker Deck: <https://speakerdeck.com/wallacese>
+Wallace Espindola, Solution Architect\
+GitHub: <https://github.com/wallaceespindola/>\
+LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
+Speaker Deck: <https://speakerdeck.com/wallacese>

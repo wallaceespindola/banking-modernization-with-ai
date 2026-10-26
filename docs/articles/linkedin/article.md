@@ -3,12 +3,12 @@ author: Wallace Espindola
 email: wallace.espindola@gmail.com
 linkedin: https://www.linkedin.com/in/wallaceespindola/
 github: https://github.com/wallaceespindola/
-description: The decisions a CIO, head of engineering or architecture lead makes in the first 90 days of banking core modernization, from picking one capability to funding the decommissioning.
+description: The decisions a CIO or architecture lead makes in the first 90 days of banking core modernization, from picking one capability to funding the decommissioning.
 ---
 
 # Don't modernize the mainframe. Modernize one capability
 
-![Banner: a network of light converging on a single node, with the words "Capabilities, not code"](banner.png)
+![Banner: lines of light converging on a framed card, with the words "Capabilities, not code"](banner.png)
 
 Most banks that start a core modernization program start from the same place. The mainframe still runs the ledger, the overnight batch and the interest and fee calculations, and it runs them reliably. The people who understand that code are fewer every year, the business rules live in COBOL and in a few specialists' heads, and the change backlog keeps growing. Then someone asks for a plan to "get off the mainframe".
 
@@ -45,7 +45,7 @@ AI is useful in this work. It can summarize programs and copybooks, propose cand
 
 The controls I'd want in writing before any code reaches a model:
 
-- **Deployment:** models run inside the bank's approved perimeter, with contractual terms on data retention and training use. Under [DORA](https://eur-lex.europa.eu/eli/reg/2022/2554/oj), which applies since 17 January 2025, the model provider is an ICT third party and gets registered as one.
+- **Deployment:** models run inside the bank's approved perimeter, with contractual terms on data retention and training use. Under [DORA](https://eur-lex.europa.eu/eli/reg/2022/2554/oj), which has applied since 17 January 2025, the model provider is an ICT third party and gets registered as one.
 - **Data:** source code is intellectual property, and test or production samples are masked or synthetic before they reach a model.
 - **Prompt injection:** comments and strings in legacy code are untrusted input, and agents get least privilege with no write access to production.
 - **Accountability:** a named human owns each approved rule, mapping and code change. AI is recorded as an assistant, not an approver.
@@ -58,18 +58,18 @@ Go/no-go criteria for production traffic should be agreed before the slice is bu
 
 ![The 90-day plan in three stages with a gate after each: days 1-30 scope one bounded capability and get AI use approved, days 31-60 build an AI-assisted discovery proof of concept and a validated rule catalog with characterization tests green on legacy, days 61-90 run one slice in shadow mode with a reconciliation report, ending in a go/no-go for production traffic](diagrams/ninety-day-plan.png)
 
-Here's why zero tolerance matters, from the worked example in the repo. COBOL's `COMPUTE` without `ROUNDED` truncates to the receiving field's decimals. A port that uses the "sensible" banker's rounding instead of truncation gives a different answer on 3 of the 8 golden accounts in the test fixture: 4.17 instead of 4.16 on one of them. (The fixture is illustrative, worked out by hand from the COBOL semantics, not captured from a real bank.) One cent per account per month is the kind of break a reconciliation report should stop, and it's easy to miss in a demo.
+Here's why zero tolerance matters, from rule BR-INT-001 in the repo. COBOL's `COMPUTE` without `ROUNDED` truncates to the receiving field's decimals. A port that uses the "sensible" banker's rounding instead of truncation gives a different answer on 3 of the 8 golden accounts in the test fixture: 4.17 instead of 4.16 on one of them. (The fixture is illustrative, worked out by hand from the COBOL semantics, not captured from a real bank.) One cent per account per month is easy to miss in a demo, and it's exactly why the last gate asks for zero unexplained breaks in the reconciliation report.
 
 ## Decision four: fund the decommissioning
 
-During coexistence the bank pays for both platforms. If the budget covers only the build, the old component stays switched on "just in case", and the program ends up with two systems to run instead of one. So the plan needs a decommissioning milestone and date for every migrated legacy component, and the business case has to include the total cost of coexistence alongside the cost of not acting (skills attrition, vendor end-of-support). This is the part I'd want a CFO to check before approving the first wave.
+During coexistence the bank pays for both platforms. So the plan needs a decommissioning date for every migrated legacy component, and the business case has to include the total cost of coexistence alongside the cost of not acting (skills attrition, vendor end-of-support). This is the part I'd want a CFO to check before approving the first wave.
 
 ## What to measure
 
 Set a baseline in the first 30 days and agree targets with stakeholders. A short list covers most of it:
 
 - **Discovery effort:** person-days to document a program or capability, with and without AI.
-- **Rules validated:** rules confirmed by experts against candidate rules extracted.
+- **Rules validated:** rules confirmed by experts as a share of candidate rules extracted.
 - **Reconciliation breaks:** count and value of breaks per business date, by root cause.
 - **Change lead time:** request to production for the migrated capability, before and after.
 - **Cost:** run cost of legacy plus new during coexistence, and what has actually been switched off.
@@ -85,8 +85,6 @@ This approach has a fixed cost: discovery, a rule catalog, characterization test
 - **Dead or duplicated code:** the right move is to retire it, after checking for hidden consumers.
 - **No available domain experts:** without someone to approve the rules, the catalog is just a list of guesses, AI-assisted or not.
 
-No single strategy fits a whole bank, so decide per capability, using value, risk and coupling as inputs.
-
 ## Summary
 
 The first 90 days of a banking core modernization come down to four decisions: one bounded capability, AI use approved with security and risk, go/no-go criteria agreed before the build, and a funded decommissioning date. Make those well and the first slice either proves the approach or shows you cheaply why it doesn't fit.
@@ -97,14 +95,13 @@ Which capability would you move first in your bank's core, and what would stop y
 
 **Examples repository:** the context document, the 90-day plan diagram, the BR-INT-001 rule catalog entry and the interest golden master example this article uses are in <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
-Need more tech insights?
-Check out my GitHub, LinkedIn, and Speaker Deck.
+Need more tech insights?\
+Check out my GitHub, LinkedIn, and Speaker Deck.\
 Happy coding!
 
-Wallace Espindola, Solution Architect
-
-- GitHub: <https://github.com/wallaceespindola/>
-- LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>
-- Speaker Deck: <https://speakerdeck.com/wallacese>
+Wallace Espindola, Solution Architect\
+GitHub: <https://github.com/wallaceespindola/>\
+LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
+Speaker Deck: <https://speakerdeck.com/wallacese>
 
 **#bankingtechnology #legacymodernization #solutionarchitecture #ai #engineeringleadership**

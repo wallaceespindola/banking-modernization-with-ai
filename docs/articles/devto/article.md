@@ -1,5 +1,5 @@
 ---
-title: "Characterization tests before a COBOL migration: a hands-on banking example"
+title: "Characterization tests before a COBOL migration, hands-on"
 published: false
 description: "Read a COBOL copybook, decode COMP-3, pin legacy interest with a golden master and reconcile a Java 21 port, cent by cent, before you change anything."
 tags: cobol, java, testing, legacy
@@ -120,7 +120,7 @@ Before any Java, write down the rule in a form a domain expert can confirm. The 
 
 The Arithmetic line is the one that saves you. It turns "the code divides by 1200" into "the code truncates toward zero to two decimals", which is a statement someone can agree or disagree with. The Edge cases line drives the test data in the next step.
 
-This is also where AI is most useful in the workflow. An assistant can read the program and draft this entry quickly, with the source link and line range. It can't approve it. The template keeps a status field (candidate, in review, validated, rejected) and an "Approved by" field for a reason: AI proposes, a named domain expert signs off, and the entry isn't done until it links to the tests that prove the port matches.
+This is also where AI is most useful in the workflow. An assistant can read the program and draft this entry quickly, with the source link and paragraph or line range. It can't approve it. The template keeps a status field (candidate, in review, validated, rejected) and an "Approved by" field for a reason: AI proposes, a named domain expert signs off, and the entry isn't done until it links to the tests that prove the port matches.
 
 ## Step 4: capture the golden master
 
@@ -140,7 +140,7 @@ ACC-0007,-100.00,19.99,-1.66
 ACC-0008,0.00,7.25,0.00
 ```
 
-Each row maps to an edge case from the catalog entry: a sub-cent result (`ACC-0005`), a zero balance (`ACC-0008`), a large balance (`ACC-0004`) and two overdrafts (`ACC-0006`, `ACC-0007`). Look at `ACC-0001`: 1000.00 times 5.00 divided by 1200 is 4.1666..., and truncation makes the legacy answer 4.16 where rounding would give 4.17.
+Most rows map to an edge case from the catalog entry: a sub-cent result (`ACC-0005`), a zero balance (`ACC-0008`), a large balance (`ACC-0004`) and two overdrafts (`ACC-0006`, `ACC-0007`). The others (`ACC-0001`, `ACC-0002`, `ACC-0003`) are baseline cases. Look at `ACC-0001`: 1000.00 times 5.00 divided by 1200 is 4.1666..., and truncation makes the legacy answer 4.16 where rounding would give 4.17.
 
 ## Step 5: port the rule with the right RoundingMode
 
@@ -166,7 +166,7 @@ The naive port uses `HALF_EVEN`, banker's rounding. It isn't a silly choice. It 
 
 ## Step 6: reconcile against the golden master
 
-A test that compares one value at a time tells you a row failed. A reconciler tells you which accounts broke, by how much, and whether the totals agree. That's the shape of the report a business owner will read. `Reconciler.java` compares legacy and modern results per account with zero tolerance. The core loop, trimmed from the repo:
+A test that compares one value at a time tells you a row failed. A reconciler tells you which accounts broke, by how much and whether the totals agree. That's the shape of the report a business owner will read: `Reconciler.Report` carries the breaks plus `legacyTotal` and `modernTotal`, and it only counts as equivalent when there are no breaks and the totals match. `Reconciler.java` compares legacy and modern results per account with zero tolerance. The core loop, trimmed from the repo:
 
 ```java
 for (String account : accounts) {
@@ -213,9 +213,9 @@ The parameterized test runs once per CSV row, so each account shows up by name i
 
 Here's the loop those tests implement:
 
-![Golden-master loop: capture the oracle by running the legacy batch into the golden master CSV, port the rule from the BR-INT-001 catalog entry to InterestRule.java with RoundingMode.DOWN, then reconcile with zero tolerance per account; equivalent results let the slice move on, and breaks go back to the catalog entry](diagrams/golden-master-loop.png)
+![Golden-master loop: capture the oracle from an illustrative, hand-worked legacy batch run into the golden master CSV, port the rule from the BR-INT-001 catalog entry to InterestRule.java with RoundingMode.DOWN, then reconcile with zero tolerance per account; equivalent results let the slice move on, and breaks go back to the catalog entry](diagrams/golden-master-loop.png)
 
-Follow the dotted arrow when the reconciler reports a break. You don't patch the Java until the numbers match. You go back to the catalog entry, find out which rule you misunderstood, get it confirmed, and then fix the port.
+Follow the dotted arrow when the reconciler reports a break. You don't patch the Java until the numbers match. You go back to the catalog entry, find out which rule you misunderstood, get it confirmed and then fix the port.
 
 ## Step 7: run it and watch the naive port fail
 
@@ -225,7 +225,7 @@ From the repo root:
 make test
 ```
 
-That runs `mvn -q test` in `examples/java`, so it's quiet when everything passes. Run Maven without `-q` to see the counts:
+That runs `mvn -q test` in `examples/java`, so it's quiet when everything passes. Run Maven without `-q` to see the counts. Trimmed Surefire output:
 
 ```bash
 cd examples/java && mvn test
@@ -261,7 +261,7 @@ Each break is one cent, on a fixture of eight rows. Across a real portfolio and 
 
 ## Where it doesn't pay off
 
-Characterization tests cost something: you need access to the legacy system to run it, masked test data, a domain expert's time for the catalog entry, and someone who can read COBOL well enough to spot a missing `ROUNDED`. For one rule that's manageable. Across a whole estate it's a large share of the work, so plan for it.
+Characterization tests cost something: you need access to the legacy system to run it, masked test data, a domain expert's time for the catalog entry and someone who can read COBOL well enough to spot a missing `ROUNDED`. For one rule that's manageable. Across a whole estate it's a large share of the work, so plan for it.
 
 They also don't tell you the legacy behavior is right. A golden master pins what the system does, bugs included. If the expert looks at the overdraft rows and says "that was never intended", you've found a business decision, and someone has to own the change.
 
@@ -284,14 +284,13 @@ Which COBOL arithmetic detail has caught you out in a port, rounding, intermedia
 
 *I wrote this article with AI assistance, then reviewed, fact-checked and edited it myself.*
 
-**Examples repository:** every example in this article (the `ACCTREC` copybook, the `INTCALC` program, the BR-INT-001 catalog entry, the COMP-3 decoder, the interest rule and its naive port, the reconciler, the golden-master test and CSV, and the diagrams) is in <https://github.com/wallaceespindola/banking-modernization-with-ai>.
+**Examples repository:** every example in this article (the `ACCTREC` copybook, the `INTCALC` program, the BR-INT-001 catalog entry, the COMP-3 decoder, the interest rule and its naive port, the reconciler, the golden-master test and CSV and the diagrams) is in <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
-Need more tech insights?
-Check out my GitHub, LinkedIn, and Speaker Deck.
+Need more tech insights?\
+Check out my GitHub, LinkedIn, and Speaker Deck.\
 Happy coding!
 
-Wallace Espindola, Solution Architect
-
-- GitHub: <https://github.com/wallaceespindola/>
-- LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>
-- Speaker Deck: <https://speakerdeck.com/wallacese>
+Wallace Espindola, Solution Architect\
+GitHub: <https://github.com/wallaceespindola/>\
+LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
+Speaker Deck: <https://speakerdeck.com/wallacese>

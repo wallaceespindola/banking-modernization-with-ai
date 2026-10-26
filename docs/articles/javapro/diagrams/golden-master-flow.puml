@@ -1,6 +1,6 @@
 @startuml golden-master-flow
 skinparam backgroundColor #ffffff
-skinparam dpi 150
+skinparam dpi 300
 skinparam defaultFontName Helvetica
 skinparam shadowing false
 skinparam sequence {
@@ -32,7 +32,7 @@ REP --> T : report
 alt InterestRule::monthlyInterest (RoundingMode.DOWN)
   T -> REP : equivalent()
   REP --> T : true, no breaks
-else InterestRule::monthlyInterestNaivePort (HALF_EVEN)
+else naive port, HALF_EVEN
   T -> REP : breaks()
   REP --> T : ACC-0001, ACC-0004, ACC-0007\n(each off by one cent)
 end

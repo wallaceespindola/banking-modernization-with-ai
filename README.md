@@ -88,16 +88,6 @@ make test   # or: cd examples/java && mvn -q test
 - [Strangler Fig Application, Martin Fowler](https://martinfowler.com/bliki/StranglerFigApplication.html)
 - [Working Effectively with Legacy Code, Michael Feathers](https://www.oreilly.com/library/view/working-effectively-with/0131177052/) (characterization tests)
 
-## Repository layout
-
-| Path | Contents |
-| --- | --- |
-| `docs/diagrams/` | Mermaid sources and rendered PNGs |
-| `docs/templates/rule-catalog-entry.md` | Rule catalog template with the BR-INT-001 worked example |
-| `examples/cobol/` | Illustrative COBOL program and copybook |
-| `examples/java/` | Java 21 port, golden-master tests and reconciler |
-| `Makefile` | `make diagrams`, `format`, `lint`, `links`, `slides`, `test` |
-
 ## Support
 
 If you find this project helpful, please consider:

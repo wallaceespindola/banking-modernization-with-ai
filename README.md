@@ -2,11 +2,11 @@
 
 ![Understand, then modernize](docs/images/banner.png)
 
-[![Apache 2.0 License](https://img.shields.io/badge/License-Apache_2.0-blue)](LICENSE) [![Docs](https://img.shields.io/badge/Written_in-Markdown-000000?logo=markdown)](docs/banking-modernization-with-ai-context.md) [![Diagrams](https://img.shields.io/badge/Diagrams-Mermaid-ff3670?logo=mermaid&logoColor=white)](docs/banking-modernization-with-ai-context.md) [![Domain](https://img.shields.io/badge/Domain-Banking_%7C_Mainframe-0a66c2)](docs/banking-modernization-with-ai-context.md) [![Approach](https://img.shields.io/badge/Approach-AI--assisted_%7C_Human--approved-8957e5)](docs/banking-modernization-with-ai-context.md#4-where-ai-helps) [![Regulation](https://img.shields.io/badge/EU-DORA_aware-003399)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) [![Java](https://img.shields.io/badge/Examples-Java_21_%7C_JUnit_5-orange?logo=openjdk&logoColor=white)](examples/java)
+[![Apache 2.0 License](https://img.shields.io/badge/License-Apache_2.0-blue)](LICENSE) [![Diagrams](https://img.shields.io/badge/Diagrams-Mermaid-ff3670?logo=mermaid&logoColor=white)](docs/diagrams) [![Domain](https://img.shields.io/badge/Domain-Banking_%7C_Mainframe-0a66c2)](#why) [![Approach](https://img.shields.io/badge/Approach-AI--assisted_%7C_Human--approved-8957e5)](#where-ai-fits) [![Regulation](https://img.shields.io/badge/EU-DORA_aware-003399)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) [![Java](https://img.shields.io/badge/Examples-Java_21_%7C_JUnit_5-orange?logo=openjdk&logoColor=white)](examples/java)
 
 The idea: modernizing a bank's legacy core is not a COBOL-to-Java translation job. The hard part is the knowledge buried in the code: decades of interest, fee, rounding, eligibility and reconciliation rules, batch cycles nobody fully remembers, and data formats that break naive conversions. Rewrite before you understand, and you replace a reliable system with a less reliable one.
 
-This repository describes a different approach. A solution architect turns the undocumented legacy estate into business capabilities that can be understood, tested and modernized one slice at a time. AI speeds up the slow parts (discovery, rule extraction, test generation, discrepancy analysis), while deterministic tooling and people keep the authority over financial correctness. It is written as a context file: something to read before a planning session, and something to hand to an AI assistant before asking it about a modernization initiative.
+This project describes a different approach. A solution architect turns the undocumented legacy estate into business capabilities that can be understood, tested and modernized one slice at a time. AI speeds up the slow parts (discovery, rule extraction, test generation, discrepancy analysis), while deterministic tooling and people keep the authority over financial correctness.
 
 It is the companion to [legacy-modernization-patterns](https://github.com/wallaceespindola/legacy-modernization-patterns). That repository catalogs the migration patterns (Strangler Fig, ACL, CDC, Parallel Run and the rest). This one covers the people and process side: what makes banking modernization hard, what the architect owns, where AI fits, and how to run a first 90-day initiative.
 
@@ -16,33 +16,13 @@ Banks keep mainframes running for good reasons: they are fast, stable and audite
 
 Big-bang rewrites have a poor track record in this setting. AI makes a faster rewrite tempting, but the bottleneck was never typing speed. It was understanding. Used well, AI shortens the time it takes to understand a legacy system. Used badly, it produces confident translations of rules nobody checked.
 
-## Context summary
-
-**Main difficulties**
+## What makes it hard
 
 - **People and organization:** scarce mainframe and COBOL skills, rules known only by a few specialists, siloed teams and an org chart that mirrors the monolith.
 - **Technology:** large coupled applications, business rules embedded in code, thin tests, CICS/IMS, JCL and schedulers, dead and duplicated code.
 - **Architecture and integration:** monolithic boundaries, links to payments, cards, risk, fraud and reporting, and overnight batch coexisting with real-time channels.
 - **Data and correctness:** DB2, VSAM and packed decimal, rounding and precision, encoding, dates, synchronization during coexistence, and the need for authoritative ledgers and reconciliation.
-- **Risk, governance and cost:** availability, security and traceability, DORA and related regulation, double-run cost, and the risk of replacing a reliable workload with a less reliable one.
-
-**Where the solution architect helps:** reconstruct the current state, define capabilities and domain boundaries with experts, set target and transition architectures, choose consistency models and non-functional targets, plan incremental waves by value and risk, govern quality gates (equivalence, reconciliation, rollback), and document decisions and trade-offs.
-
-**Where AI helps:** legacy discovery, business-rule extraction with source traceability, architecture reconstruction, domain modeling, code modernization, data mapping, characterization tests and discrepancy analysis, knowledge transfer and prioritization. Every use case comes with a control.
-
-**Guardrail:** AI must not independently approve banking correctness. Deterministic parsers and static analysis come first, and human review, the legacy system as test oracle, financial reconciliation and secure model deployment are required.
-
-**90-day initiative**
-
-| Phase | Focus |
-| --- | --- |
-| Days 1–30 | Select a bounded capability, inventory programs and dependencies, capture risks, set baseline metrics |
-| Days 31–60 | AI-assisted discovery proof of concept, rule catalog, data and service boundaries, characterization tests |
-| Days 61–90 | One controlled modernization slice in shadow mode, reconciliation against legacy, target architecture and roadmap |
-
-**Success measures:** discovery effort, business rules validated, dependency coverage, characterization coverage, reconciliation discrepancies, defect escape rate, change lead time, operational resilience, cost and business value.
-
-**Key message:** the greatest opportunity for a solution architect using AI is to turn undocumented legacy banking systems into understandable, testable and incrementally modernizable business capabilities, while preserving financial correctness and operational risk controls.
+- **Risk, governance and cost:** availability, security and traceability, regulation, double-run cost, and the risk of replacing a reliable workload with a less reliable one.
 
 ## Core principles
 
@@ -53,43 +33,43 @@ Big-bang rewrites have a poor track record in this setting. AI makes a faster re
 | AI proposes, deterministic tooling verifies, humans approve | AI shortens the work; it never becomes the authority on financial behavior |
 | Decommission, don't just build | Every slice has a date when the legacy part is switched off, or the bank pays for two platforms indefinitely |
 
-```mermaid
-flowchart LR
-    L["Legacy estate<br/>COBOL, JCL, copybooks, DB2, VSAM"] --> D["Discover<br/>parsers + AI summaries"]
-    D --> R["Extract rules<br/>AI candidates + expert sign-off"]
-    R --> T["Characterize<br/>legacy as test oracle"]
-    T --> M["Modernize one slice<br/>strangler + ACL"]
-    M --> V["Verify<br/>shadow run + reconciliation"]
-    V -->|equivalent| C[Cut over and decommission]
-    V -->|breaks| R
-```
+![The modernization loop: discover, extract rules, characterize, modernize one slice, verify with shadow run and reconciliation; breaks go back to the rules, equivalent slices are cut over and decommissioned](docs/diagrams/modernization-loop.png)
 
-In short: parsers and static analysis map the estate, AI turns that map into readable summaries and candidate rules, domain experts sign the rules off, the legacy system acts as the test oracle, and reconciliation decides when a slice is actually done.
+Parsers and static analysis map the estate, AI turns that map into readable summaries and candidate rules, domain experts sign the rules off, the legacy system acts as the test oracle, and reconciliation decides when a slice is actually done.
 
-## What's in the context file
+## Incremental coexistence
 
-[`docs/banking-modernization-with-ai-context.md`](docs/banking-modernization-with-ai-context.md) contains:
+The recommended strategy is an incremental strangler: a routing layer and an anti-corruption layer sit in front of the legacy core, one capability moves at a time, and both sides run in parallel until reconciliation shows they agree. Retain, rehost, replace and retire stay valid choices for parts of the estate where a rebuild doesn't pay off.
 
-- The main difficulties in detail, with the mainframe specifics that generic lists leave out: `COMP-3` and `REDEFINES`, EBCDIC collation, COBOL vs Java rounding, Julian dates and batch restart semantics
-- Six modernization strategies (retain, rehost, refactor, rearchitect, replace, retire) with fit and risk for each, and the recommended incremental strangler with controlled coexistence
-- What a solution architect owns, plus the architecture anti-patterns to prevent
-- Where AI helps, each use case paired with the control it needs, a reference AI-assisted discovery pipeline, and AI governance: deployment, data masking, prompt injection, reproducibility and accountability
-- A testing and verification strategy: golden master, record and replay, differential and property-based testing, three-level reconciliation and parallel runs
-- The 90-day initiative with criteria for choosing the first capability and exit criteria for each phase
-- Success measures with how to measure each one, and the open questions to settle early
-- The regulatory frame to check per institution: DORA, EBA guidelines, BCBS 239, GDPR, PSD2 and the EU AI Act
+![Strangler coexistence: an API gateway routes migrated capabilities to the new domain service and the rest through an anti-corruption layer to the mainframe; CDC events from DB2 and VSAM feed the new service, and both sides send results to a reconciliation and diff engine](docs/diagrams/strangler-coexistence.png)
 
-## How to use it
+## The architect's role
 
-- **Planning:** start from the 90-day initiative, pick a capability with the selection criteria, and use the exit criteria as phase gates.
-- **Design reviews:** use the difficulties, anti-patterns and open questions as a checklist for a modernization proposal.
-- **AI adoption:** use the AI table and governance section to agree with security and risk which use cases are allowed and which controls apply, before any tool reaches the code.
-- **With an AI assistant:** load the file as context (for example, reference it from a `CLAUDE.md` or `.github/copilot-instructions.md`) before asking for discovery plans, ADRs or migration roadmaps. The assistant then starts from the same vocabulary and guardrails.
-- **Writing:** it is the source material for articles and talks on the topic.
+The solution architect reconstructs the current state, defines capabilities and domain boundaries with domain experts, sets target and transition architectures, chooses consistency models and non-functional targets, plans incremental waves by value and risk, governs the quality gates (equivalence, reconciliation, rollback), and records decisions and trade-offs.
+
+## Where AI fits
+
+AI helps with legacy discovery, business-rule extraction with source traceability, architecture reconstruction, domain modeling, code modernization, data mapping, characterization tests, discrepancy analysis and knowledge transfer. Every use comes with a control. The guardrail: AI never approves banking correctness on its own. Deterministic parsers produce the facts, AI interprets them, and people approve.
+
+![AI-assisted discovery pipeline: parsers and static analysis turn the legacy sources into a dependency and data-lineage graph, LLM agents turn the index into a candidate rule catalog with source links, then domain experts review and characterization tests run against the legacy system as the oracle](docs/diagrams/ai-discovery-pipeline.png)
+
+## A first 90 days
+
+| Phase | Focus |
+| --- | --- |
+| Days 1-30 | Select a bounded capability, inventory programs and dependencies, capture risks, set baseline metrics, get AI use approved |
+| Days 31-60 | AI-assisted discovery proof of concept, rule catalog, data and service boundaries, characterization tests |
+| Days 61-90 | One controlled modernization slice in shadow mode, reconciliation against legacy, target architecture and roadmap |
+
+![The 90-day plan in three stages with a gate after each, ending in a go/no-go decision for production traffic](docs/diagrams/ninety-day-plan.png)
+
+Success is measured against a baseline set in the first 30 days: discovery effort, business rules validated, dependency and characterization coverage, reconciliation breaks, defect escape rate, change lead time, operational resilience, cost and business value.
+
+The short version: the biggest opportunity for a solution architect using AI is to turn undocumented legacy banking systems into understandable, testable and incrementally modernizable business capabilities, while keeping financial correctness and operational risk under control.
 
 ## Runnable example
 
-The context says correctness must be proven, so the repo includes one small proof. `examples/cobol/INTCALC.cbl` holds an illustrative interest rule: a `COMPUTE` with no `ROUNDED` phrase, which truncates to two decimals. `examples/java/` ports it to Java 21 and proves the port against a golden master:
+Correctness has to be proven, so the repo includes one small proof. `examples/cobol/INTCALC.cbl` holds an illustrative interest rule: a `COMPUTE` with no `ROUNDED` phrase, which truncates to two decimals. `examples/java/` ports it to Java 21 and proves the port against a golden master:
 
 - `PackedDecimal` decodes `COMP-3` fields, including sign-nibble validation.
 - `InterestRule` is the legacy-equivalent port (`RoundingMode.DOWN`), next to a naive port with banker's rounding that a reviewer could easily accept.
@@ -102,15 +82,7 @@ The golden CSV is an illustrative fixture worked out by hand from the COBOL sema
 make test   # or: cd examples/java && mvn -q test
 ```
 
-## Related reading
-
-My articles on the same topic:
-
-- [Stop Rewriting Legacy Systems: Use AI to Understand Them First](https://dev.to/wallaceespindola/stop-rewriting-legacy-systems-use-ai-to-understand-them-first-21ba) (Dev.to)
-- [Above the Rewrite: How AI Is Changing Legacy Modernization](https://medium.com/@wallaceespindola/above-the-rewrite-how-ai-is-changing-legacy-modernization-ed757a9087a3) (Medium)
-- [The Future of Legacy Modernization Isn't a Simple Rewrite](https://wallaceespindola.substack.com/p/the-future-of-legacy-modernization) (Code & Coffee, Substack)
-
-External references:
+## References
 
 - [Regulation (EU) 2022/2554 (DORA)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj)
 - [Strangler Fig Application, Martin Fowler](https://martinfowler.com/bliki/StranglerFigApplication.html)
@@ -120,14 +92,10 @@ External references:
 
 | Path | Contents |
 | --- | --- |
-| `docs/banking-modernization-with-ai-context.md` | The modernization context |
-| `docs/templates/rule-catalog-entry.md` | Rule catalog template with the BR-INT-001 worked example |
 | `docs/diagrams/` | Mermaid sources and rendered PNGs |
-| `docs/articles/` | Platform article drafts, banners and diagrams |
-| `docs/presentations/` | Talk deck (Marp source, PDF, PPTX) and import guide |
+| `docs/templates/rule-catalog-entry.md` | Rule catalog template with the BR-INT-001 worked example |
 | `examples/cobol/` | Illustrative COBOL program and copybook |
 | `examples/java/` | Java 21 port, golden-master tests and reconciler |
-| `docs/images/banner.png` | README banner |
 | `Makefile` | `make diagrams`, `format`, `lint`, `links`, `slides`, `test` |
 
 ## Support

@@ -1,5 +1,5 @@
 ---
-title: "Let the legacy system grade your homework"
+title: "Let the bank's legacy system grade your homework"
 platform: Substack
 newsletter: Code & Coffee
 author: Wallace Espindola
@@ -15,7 +15,7 @@ tags: [legacy-modernization, characterization-tests, cobol, java, banking]
 
 ![Banner with the words "Legacy grades the homework" over warm flowing lines of light on a dark background](banner.png)
 
-# Let the legacy system grade your homework
+# Let the bank's legacy system grade your homework
 
 Hey folks,
 

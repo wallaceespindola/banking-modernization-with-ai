@@ -6,7 +6,7 @@ Summary: Port one COBOL interest rule to Java 21 and prove it matches the legacy
 
 ![Dark grid of square tiles with a scattered trail of bright green tiles on the right and the words Every cent, tested on the left](banner.png)
 
-# From a COBOL COMPUTE to tested Java 21: proving equivalence to the cent
+# From a banking COBOL COMPUTE to tested Java 21: proving equivalence to the cent
 
 **By Wallace Espindola, Solution Architect**
 <wallace.espindola@gmail.com> | [LinkedIn](https://www.linkedin.com/in/wallaceespindola/) | [GitHub](https://github.com/wallaceespindola/)

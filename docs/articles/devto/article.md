@@ -1,5 +1,5 @@
 ---
-title: "Characterization tests before a COBOL migration, hands-on"
+title: "Characterization tests before a banking COBOL migration, hands-on"
 published: false
 description: "Read a COBOL copybook, decode COMP-3, pin legacy interest with a golden master and reconcile a Java 21 port, cent by cent, before you change anything."
 tags: cobol, java, testing, legacy

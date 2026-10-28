@@ -6,7 +6,7 @@ github: https://github.com/wallaceespindola/
 description: The decisions a CIO or architecture lead makes in the first 90 days of banking core modernization, from picking one capability to funding the decommissioning.
 ---
 
-# Don't modernize the mainframe. Modernize one capability
+# Don't modernize the bank's mainframe. Modernize one capability
 
 ![Banner: lines of light converging on a framed card, with the words "Capabilities, not code"](banner.png)
 

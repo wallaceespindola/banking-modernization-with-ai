@@ -31,7 +31,7 @@ Two responses dominate the discussion. The first is the big-bang replacement, a 
 
 This article describes a pattern that addresses that bottleneck. It separates three kinds of work: establishing facts about the legacy estate, interpreting those facts into business rules and approving those rules as the behavior the bank must keep. Each kind of work has a different owner and a different source of authority. The short form, used throughout the companion repository, is "AI proposes, deterministic tooling verifies, humans approve."
 
-The analysis is grounded in an open repository: a modernization context document, a rule catalog template with one worked example (`BR-INT-001`, monthly interest accrual), an illustrative COBOL program and copybook plus a small Java 21 module with a packed-decimal decoder, the legacy-equivalent interest rule, golden-master tests and a reconciler. The repository is a reference implementation that does not come from a production program, so this article discusses design and trade-offs. It does not report adoption figures or outcomes.
+The analysis is grounded in an open repository: a modernization context document, a rule catalog template with one worked example (`BR-INT-001`, monthly interest accrual), an illustrative COBOL program and copybook plus a small Java 25 module with a packed-decimal decoder, the legacy-equivalent interest rule, golden-master tests and a reconciler. The repository is a reference implementation that does not come from a production program, so this article discusses design and trade-offs. It does not report adoption figures or outcomes.
 
 ## Two older ideas the pattern builds on
 

@@ -1,12 +1,12 @@
 <!--
 Submission metadata
 Keywords: COBOL, COMP-3, BigDecimal, RoundingMode, golden master, characterization tests, reconciliation
-Summary: Port one COBOL interest rule to Java 21 and prove it matches the legacy output to the cent with COMP-3 decoding, BigDecimal and JUnit golden-master tests.
+Summary: Port one COBOL interest rule to Java 25 and prove it matches the legacy output to the cent with COMP-3 decoding, BigDecimal and JUnit golden-master tests.
 -->
 
 ![Dark grid of square tiles with a scattered trail of bright green tiles on the right and the words Every cent, tested on the left](banner.png)
 
-# From a banking COBOL COMPUTE to tested Java 21: proving equivalence to the cent
+# From a banking COBOL COMPUTE to tested Java 25: proving equivalence to the cent
 
 **By Wallace Espindola, Solution Architect**
 <wallace.espindola@gmail.com> | [LinkedIn](https://www.linkedin.com/in/wallaceespindola/) | [GitHub](https://github.com/wallaceespindola/)
@@ -15,7 +15,7 @@ Summary: Port one COBOL interest rule to Java 21 and prove it matches the legacy
 
 ## Abstract
 
-A COBOL interest calculation can be one `COMPUTE` statement, and its Java port can still be wrong in ways a code review won't catch: the picture clause sets the scale, a missing `ROUNDED` means truncation, and the inputs arrive as packed decimal bytes. This article walks through a small Java 21 module that ports one rule, BR-INT-001 (monthly interest accrual), and proves it matches the legacy output to the cent. It covers `COMP-3` decoding with sign-nibble validation, `BigDecimal` with explicit scale and `RoundingMode.DOWN`, a golden-master test with `@CsvFileSource`, zero-tolerance reconciliation with `compareTo`, and a naive port kept as a negative test. It is written for Java developers and reviewers who own a port like this one, and for the architects who have to sign off that it is equivalent. Two limits stay open on purpose. The closed-account branch (`ACCT-ACTIVE`) is not ported in the example, and intermediate precision, which depends on COBOL compiler options, is pinned by the characterization tests rather than derived. The article shows how both gaps stay visible next to a green build.
+A COBOL interest calculation can be one `COMPUTE` statement, and its Java port can still be wrong in ways a code review won't catch: the picture clause sets the scale, a missing `ROUNDED` means truncation, and the inputs arrive as packed decimal bytes. This article walks through a small Java 25 module that ports one rule, BR-INT-001 (monthly interest accrual), and proves it matches the legacy output to the cent. It covers `COMP-3` decoding with sign-nibble validation, `BigDecimal` with explicit scale and `RoundingMode.DOWN`, a golden-master test with `@CsvFileSource`, zero-tolerance reconciliation with `compareTo`, and a naive port kept as a negative test. It is written for Java developers and reviewers who own a port like this one, and for the architects who have to sign off that it is equivalent. Two limits stay open on purpose. The closed-account branch (`ACCT-ACTIVE`) is not ported in the example, and intermediate precision, which depends on COBOL compiler options, is pinned by the characterization tests rather than derived. The article shows how both gaps stay visible next to a green build.
 
 ---
 
@@ -25,7 +25,7 @@ When a bank moves a capability off the mainframe, the pull request that ports a 
 
 That question is the acceptance criterion. The series repository states the principle as "correctness is proven, not assumed": AI can draft the rule catalog entry and propose the port, but the legacy system is the oracle and deterministic tests decide.
 
-This article is the code-level version of that principle: one rule from an illustrative COBOL program, its copybook, and the four Java classes that make the port reviewable. All of it is in the companion repository, [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai), under `examples/`. The COBOL is illustrative and isn't compiled. The Java module is real: Java 21, JUnit 5, 17 tests, all green.
+This article is the code-level version of that principle: one rule from an illustrative COBOL program, its copybook, and the four Java classes that make the port reviewable. All of it is in the companion repository, [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai), under `examples/`. The COBOL is illustrative and isn't compiled. The Java module is real: Java 25, JUnit 5, 17 tests, all green.
 
 ## The legacy side: one COMPUTE and a copybook
 
@@ -368,7 +368,7 @@ Green tests don't show that the closed-account branch was never ported, or that 
 
 ## Running it
 
-The module targets Java 21 (`maven.compiler.release` is 21) and was tested on Java 21. It needs Maven. From the repository root, or directly in the module:
+The module targets Java 25 (`maven.compiler.release` is 25) and was tested on Java 25. It needs Maven. From the repository root, or directly in the module:
 
 ```bash
 make test
@@ -392,8 +392,8 @@ Proving a port equivalent to the cent comes down to decisions a reviewer can che
 ## References
 
 - banking-modernization-with-ai (context document, rule catalog template, COBOL and Java examples), [GitHub](https://github.com/wallaceespindola/banking-modernization-with-ai)
-- Java SE 21 API: `java.math.BigDecimal`, [docs.oracle.com](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)
-- Java SE 21 API: `java.math.RoundingMode`, [docs.oracle.com](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/RoundingMode.html)
+- Java SE 25 API: `java.math.BigDecimal`, [docs.oracle.com](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/math/BigDecimal.html)
+- Java SE 25 API: `java.math.RoundingMode`, [docs.oracle.com](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/math/RoundingMode.html)
 - JUnit 5 User Guide: parameterized tests and `@CsvFileSource`, [junit.org](https://junit.org/junit5/docs/5.11.4/user-guide/#writing-tests-parameterized-tests)
 - Michael Feathers, Working Effectively with Legacy Code (characterization tests), [O'Reilly](https://www.oreilly.com/library/view/working-effectively-with/0131177052/)
 

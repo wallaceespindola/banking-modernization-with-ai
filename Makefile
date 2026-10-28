@@ -29,7 +29,10 @@ slides: ## Export the Marp deck to PDF (Speaker Deck) and PPTX
 	npx -y @marp-team/marp-cli $(DECK) --pdf --allow-local-files -o $(DECK_OUT).pdf
 	npx -y @marp-team/marp-cli $(DECK) --pptx --allow-local-files -o $(DECK_OUT)-marp.pptx
 
-test: ## Run the Java example tests
-	cd examples/java && mvn -q test
+# Java 25 for the examples; on macOS pick it via java_home, elsewhere keep the current JAVA_HOME
+JAVA25 ?= $(shell /usr/libexec/java_home -v 25 2>/dev/null)
+
+test: ## Run the Java example tests (Java 25)
+	cd examples/java && $(if $(JAVA25),JAVA_HOME=$(JAVA25) )mvn -q test
 
 check: lint links test ## Run all checks

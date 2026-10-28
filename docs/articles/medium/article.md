@@ -22,7 +22,7 @@ It is also wrong by one cent on several accounts. The COBOL statement has no `RO
 
 That cent explains, better than any slide, what I think banking modernization is. It was never mainly a language problem. COBOL is old, but it is readable, and plenty of people can learn it. The hard part is the knowledge that lives in the code (interest, fees, rounding, eligibility, reconciliation rules nobody wrote down anywhere else) and the proof that the new system behaves the same way. AI changes the first part a lot. I don't think it should touch the authority over the second.
 
-All the examples here come from a companion repository, [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai): a context document, an illustrative COBOL program, a small Java 21 module with golden-master tests and a reconciler. This article is the opinion piece in a series. It says what I think AI changes in this work, what it must not do, and where my own argument gets weaker.
+All the examples here come from a companion repository, [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai): a context document, an illustrative COBOL program, a small Java 25 module with golden-master tests and a reconciler. This article is the opinion piece in a series. It says what I think AI changes in this work, what it must not do, and where my own argument gets weaker.
 
 ## The language was never the bottleneck
 

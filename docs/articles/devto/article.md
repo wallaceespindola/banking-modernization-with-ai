@@ -1,7 +1,7 @@
 ---
 title: "Characterization tests before a banking COBOL migration, hands-on"
 published: false
-description: "Read a COBOL copybook, decode COMP-3, pin legacy interest with a golden master and reconcile a Java 21 port, cent by cent, before you change anything."
+description: "Read a COBOL copybook, decode COMP-3, pin legacy interest with a golden master and reconcile a Java 25 port, cent by cent, before you change anything."
 tags: cobol, java, testing, legacy
 ---
 
@@ -11,7 +11,7 @@ You've been asked to move a bank's monthly interest calculation off the mainfram
 
 That cent sums up the trouble with legacy banking code. The rules live in the code rather than in a document, and the code carries semantics (truncation, packed decimal, implied decimal points) that a reasonable-looking Java port changes without anyone noticing. So before you port anything, you pin down what the legacy system actually does and make it the judge.
 
-This article covers the hands-on part: the files you read, the files you add and the commands you run to put one COBOL rule under characterization tests, port it to Java 21 and prove the port is equivalent. Everything is in the companion repo, [banking-modernization-with-ai on GitHub](https://github.com/wallaceespindola/banking-modernization-with-ai). The COBOL in there is illustrative (it isn't compiled), and the Java module is real and runs with `make test`.
+This article covers the hands-on part: the files you read, the files you add and the commands you run to put one COBOL rule under characterization tests, port it to Java 25 and prove the port is equivalent. Everything is in the companion repo, [banking-modernization-with-ai on GitHub](https://github.com/wallaceespindola/banking-modernization-with-ai). The COBOL in there is illustrative (it isn't compiled), and the Java module is real and runs with `make test`.
 
 ![The modernization loop in three stages: understand the legacy estate by discovering it and extracting rules, prove and move by characterizing, modernizing one slice and verifying it, then cut over and decommission, with breaks going back to the rules](diagrams/modernization-loop.png)
 
@@ -36,7 +36,7 @@ examples/java/src/test/
   resources/golden/monthly-interest.csv
 ```
 
-You need Java 21 and Maven for the Java part. Nothing else.
+You need Java 25 and Maven for the Java part. Nothing else.
 
 ## Step 1: read the copybook before the program
 

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A docs-first project about modernizing legacy banking systems with a solution architect in charge and AI as an assistant. The source of truth is `docs/banking-modernization-with-ai-context.md`; keep `README.md`, the articles and the slides consistent with it. If an article needs a fact the context file doesn't have, add it to the context file first.
 
-`examples/` holds small, runnable illustrations that the articles quote: an illustrative COBOL program and copybook, and a Java 21 Maven module with a COMP-3 decoder, the legacy-equivalent interest rule, golden-master tests and a reconciler. Articles copy snippets from these files, never the other way round.
+`examples/` holds small, runnable illustrations that the articles quote: an illustrative COBOL program and copybook, and a Java 25 Maven module with a COMP-3 decoder, the legacy-equivalent interest rule, golden-master tests and a reconciler. Articles copy snippets from these files, never the other way round.
 
 ## Layout
 

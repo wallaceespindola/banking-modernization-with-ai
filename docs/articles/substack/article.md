@@ -124,7 +124,7 @@ Then look at one thing: how many breaks you found that nobody predicted before t
 
 ## The repo
 
-Everything above is in a public repo, with the illustrative COBOL program and copybook, the Java 21 module, the golden CSV, the rule catalog template and the diagrams:
+Everything above is in a public repo, with the illustrative COBOL program and copybook, the Java 25 module, the golden CSV, the rule catalog template and the diagrams:
 
 **<https://github.com/wallaceespindola/banking-modernization-with-ai>**
 

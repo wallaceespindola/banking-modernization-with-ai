@@ -2,7 +2,7 @@
 
 ![Understand, then modernize](docs/images/banner.png)
 
-[![Apache 2.0 License](https://img.shields.io/badge/License-Apache_2.0-blue)](LICENSE) [![Diagrams](https://img.shields.io/badge/Diagrams-Mermaid-ff3670?logo=mermaid&logoColor=white)](docs/diagrams) [![Domain](https://img.shields.io/badge/Domain-Banking_%7C_Mainframe-0a66c2)](#why-banks-modernize) [![Approach](https://img.shields.io/badge/Approach-AI--assisted_%7C_Human--approved-8957e5)](#where-ai-helps-and-where-it-must-not-decide) [![Regulation](https://img.shields.io/badge/EU-DORA_aware-003399)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) [![Java](https://img.shields.io/badge/Examples-Java_21_%7C_JUnit_5-orange?logo=openjdk&logoColor=white)](examples/java)
+[![Apache 2.0 License](https://img.shields.io/badge/License-Apache_2.0-blue)](LICENSE) [![Diagrams](https://img.shields.io/badge/Diagrams-Mermaid-ff3670?logo=mermaid&logoColor=white)](docs/diagrams) [![Domain](https://img.shields.io/badge/Domain-Banking_%7C_Mainframe-0a66c2)](#why-banks-modernize) [![Approach](https://img.shields.io/badge/Approach-AI--assisted_%7C_Human--approved-8957e5)](#where-ai-helps-and-where-it-must-not-decide) [![Regulation](https://img.shields.io/badge/EU-DORA_aware-003399)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) [![Java](https://img.shields.io/badge/Examples-Java_25_%7C_JUnit_5-orange?logo=openjdk&logoColor=white)](examples/java)
 
 Modernizing a bank's legacy core is not a COBOL-to-Java translation job. The hard part is the knowledge buried in the code: decades of interest, fee, rounding, eligibility and reconciliation rules, batch cycles nobody fully remembers, and data formats that break naive conversions. Rewrite before you understand, and you replace a reliable system with a less reliable one.
 
@@ -168,7 +168,7 @@ Every metric gets a baseline in the first 30 days and a target agreed with stake
 
 ## Runnable example
 
-Correctness has to be proven, so the repo includes one small proof. `examples/cobol/INTCALC.cbl` holds an illustrative interest rule: a `COMPUTE` with no `ROUNDED` phrase, which truncates to two decimals. `examples/java/` ports it to Java 21 and proves the port against a golden master:
+Correctness has to be proven, so the repo includes one small proof. `examples/cobol/INTCALC.cbl` holds an illustrative interest rule: a `COMPUTE` with no `ROUNDED` phrase, which truncates to two decimals. `examples/java/` ports it to Java 25 and proves the port against a golden master:
 
 - `PackedDecimal` decodes `COMP-3` fields, including sign-nibble validation.
 - `InterestRule` is the legacy-equivalent port (`RoundingMode.DOWN`), next to a naive port with banker's rounding that a reviewer could easily accept.

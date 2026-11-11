@@ -259,7 +259,7 @@ Each break is one cent, on a fixture of eight rows. Across a real portfolio and 
 
 **Equals on BigDecimal.** Using `equals` instead of `compareTo` is an easy way to make a reconciler report breaks that aren't there. `ReconcilerTest.equalAmountsWithDifferentScaleAreNotABreak` is there to keep it honest.
 
-## Where it doesn't pay off
+## What it costs and what it misses
 
 Characterization tests cost something: you need access to the legacy system to run it, masked test data, a domain expert's time for the catalog entry and someone who can read COBOL well enough to spot a missing `ROUNDED`. For one rule that's manageable. Across a whole estate it's a large share of the work, so plan for it.
 

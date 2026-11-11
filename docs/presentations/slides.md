@@ -98,7 +98,7 @@ Target code uses `BigDecimal` with explicit scale and `RoundingMode`, never `dou
 
 <!--
 These are the details that break a conversion that looks correct.
-The one I'll come back to is rounding. A COBOL COMPUTE without the ROUNDED phrase truncates. Java developers reach for rounding by habit. That gap is worth a cent per account, and I'll show it on real code later.
+The one I'll come back to is rounding. A COBOL COMPUTE without the ROUNDED phrase truncates. Java developers reach for rounding by habit. That gap is worth a cent per account, and I'll show it on the example code later.
 -->
 
 ---
@@ -303,7 +303,7 @@ The other 5 accounts match. Fixture: `monthly-interest.csv`, **illustrative, wor
 <!--
 The golden CSV has eight accounts. To be clear: it is an illustrative fixture I worked out by hand from the COBOL semantics, not output captured from a real mainframe.
 Against it, the naive port breaks on three of eight accounts, each by one cent. ACC-0007 is an overdraft: truncation toward zero gives minus 1.66, rounding gives minus 1.67.
-One cent sounds small. Multiplied across accounts and months, it is a reconciliation break on every business date, and a conversation with the regulator.
+One cent sounds small. Multiplied across accounts and months, it is a reconciliation break on every business date, and a question from audit that someone has to answer.
 -->
 
 ---

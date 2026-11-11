@@ -202,15 +202,4 @@ Contact: [wallace.espindola@gmail.com](mailto:wallace.espindola@gmail.com) · [L
 
 **AI disclosure**: This article was drafted with AI assistance (Claude) for research support, outlining, drafting and editing, based on the author's own modernization context document and repository. Code, figures and regulatory references were checked against the repository and the cited sources.
 
-**Publishing note**: This article is submitted for InfoQ's 4-week exclusive publishing window. It will not be cross-posted to other platforms until that window closes.
-
 **Examples repository:** this article uses the rule catalog template with the BR-INT-001 entry, the illustrative `INTCALC.cbl` program, the golden-master interest tests and the reconciler from <https://github.com/wallaceespindola/banking-modernization-with-ai>.
-
-Need more tech insights?\
-Check out my GitHub, LinkedIn, and Speaker Deck.\
-Happy coding!
-
-Wallace Espindola, Solution Architect\
-GitHub: <https://github.com/wallaceespindola/>\
-LinkedIn: <https://www.linkedin.com/in/wallaceespindola/>\
-Speaker Deck: <https://speakerdeck.com/wallacese>

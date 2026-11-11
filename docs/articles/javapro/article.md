@@ -377,7 +377,7 @@ cd examples/java && mvn -q test
 
 That runs 17 tests: 10 golden-master (8 rows plus 2 reconciliation), 5 `PackedDecimalTest`, 2 `ReconcilerTest`. Switch `monthlyInterest` to `HALF_EVEN` and three rows plus `portReconcilesWithLegacyRun` go red.
 
-## Where it doesn't pay off
+## Limits of this example
 
 - **The fixture is only as good as its source:** hand-worked values are fine for teaching, not as evidence. Real golden data comes from the legacy system on masked or synthetic data, and capturing it takes time and access.
 - **Intermediate precision isn't modelled:** only captured legacy output reveals where compiler options change a last digit.

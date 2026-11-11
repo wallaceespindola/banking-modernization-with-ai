@@ -92,9 +92,9 @@ In a bank, the evidence has to come from somewhere deterministic. The context do
 
 - **The legacy system is the test oracle:** characterization (golden master) tests capture legacy outputs for representative and edge-case inputs before anything changes. The model can suggest the inputs. The expected values come from the legacy system.
 - **Differential testing with an agreed tolerance:** outputs compared field by field, and for amounts the tolerance is normally zero.
-- **Reconciliation at three levels:** record, account balance and general-ledger totals per business date.
-- **A parallel run:** at least one full business cycle that includes month-end and, when relevant, year-end.
-- **A named human owner:** each approved rule, mapping and code change has a person who owns it. AI is recorded as an assistant, not an approver.
+- **Reconciliation at three levels:** for each business date, the records, the account balances and the general-ledger totals all have to agree.
+- **A parallel run:** long enough to cover a full business cycle, with month-end in it and year-end where that matters.
+- **A named human owner:** a person answers for each approved rule, mapping and code change. The model's contribution is logged as help, not as approval.
 
 None of these steps needs AI to be trusted. AI proposes, deterministic tooling verifies, humans approve. If a model gets better next year, the gates stay the same, and that is what lets you adopt the better model without reopening the whole risk discussion.
 
@@ -134,7 +134,7 @@ I'd be overselling this if I didn't say where it doesn't hold as well.
 
 **Equivalence is narrower than it looks.** My cent example is a single division. Production estates have intermediate precision that depends on compiler options (the Java comment in the repo says to pin it from the characterization tests before changing that line), batch restart semantics, century windowing from Y2K remediation and encoding conversions. A golden file of eight hand-worked rows shows the idea. It is nowhere near the coverage a real slice needs, which is why the plan calls for record and replay of masked transactions and a full business-cycle parallel run.
 
-**AI-assisted discovery has to earn trust.** The context document suggests building an evaluation set early, programs whose rules are already known, and measuring extraction precision and recall before relying on the pipeline for unknown code. I don't have numbers from a live rollout to share, and I won't invent any. Until you have your own, treat AI summaries as candidates.
+**AI-assisted discovery has to earn trust.** The context document suggests building an evaluation set early, programs whose rules are already known, and measuring extraction precision and recall before relying on the pipeline for unknown code. I have no measured results from a live rollout to quote here. Until you have your own, treat AI summaries as candidates.
 
 **Coexistence costs money.** Shadow runs, parallel runs and reconciliation mean running two platforms for a while. The business case has to include that cost, along with the cost of not acting: skills attrition and vendor end-of-support.
 

@@ -23,7 +23,7 @@ A quick picture first. Somebody ports a COBOL interest calculation to Java. Mayb
 
 In a bank that's not good enough. The rule that matters is the one the mainframe has been running for years, including the parts nobody wrote down. So the habit I want to talk about is simple: before you trust any port, let the legacy system grade it. Capture what the old code actually produces, turn that into tests, and make the new code match it to the cent.
 
-This issue is the coffee-length version: what the habit looks like, a one-cent example from the companion repo, where it doesn't pay off and what to try on Monday. Everything I show is in [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai).
+This issue is the coffee-length version: what the habit looks like, a one-cent example from the companion repo, when to skip it and what to try on Monday. Everything I show is in [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai).
 
 ![The habit loop: capture legacy outputs from a real batch run with masked inputs, turn them into characterization tests, then port the rule by a person or with AI and reconcile to the cent per account and in total. Equivalent results let the slice move on; a break sends you back to fix the port.](diagrams/habit-loop.png)
 
@@ -99,7 +99,7 @@ It's tempting to look at 4.17 and think the new answer is "more correct", becaus
 
 The same goes for things you can't see in the source. The catalog entry notes that intermediate precision depends on compiler options and is pinned by the characterization tests. You don't have to reverse-engineer every compiler setting up front. You let the outputs pin the behavior, and nobody edits the expected values to make a build pass.
 
-## Where it doesn't pay off
+## When to skip it
 
 The habit has a cost, and it's mostly in step one. Capturing legacy outputs means getting masked inputs, scheduling runs on the old platform and storing results somewhere the tests can reach. For a bounded, calculation-heavy rule like interest accrual or fees, that's cheap compared with what a wrong cent costs. For other work it fits less well.
 

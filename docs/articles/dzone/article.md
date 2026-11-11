@@ -12,10 +12,10 @@ Tags: legacy-modernization, core-banking, ai-governance, cobol, software-archite
 
 ![Banner with the words "Prove it, then cut" over a dark perspective grid and a single ring of light](banner.jpg)
 
-**Author**: Wallace Espindola, Solution Architect
-**Email**: <wallace.espindola@gmail.com>
-**LinkedIn**: <https://www.linkedin.com/in/wallaceespindola/>
-**GitHub**: <https://github.com/wallaceespindola/>
+**Author**: Wallace Espindola, Solution Architect\
+**Email**: <wallace.espindola@gmail.com>\
+**LinkedIn**: <https://www.linkedin.com/in/wallaceespindola/>\
+**GitHub**: <https://github.com/wallaceespindola/>\
 **Companion repo**: <https://github.com/wallaceespindola/banking-modernization-with-ai>
 
 ---

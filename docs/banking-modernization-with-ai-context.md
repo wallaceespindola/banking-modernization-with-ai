@@ -195,9 +195,9 @@ Prefer a capability that is **valuable enough to matter, bounded enough to finis
 
 | Phase | Activities | Exit criteria |
 | --- | --- | --- |
-| **Days 1–30** | Select a bounded banking capability, inventory legacy programs and dependencies, capture risks, establish baseline metrics, and interview domain experts. | Scope signed off; inventory and dependency graph; baseline metrics; risk register; AI usage approved by security and risk. |
-| **Days 31–60** | Build an AI-assisted discovery proof of concept, catalog candidate business rules, map data and service boundaries, and produce characterization test cases. | Rule catalog with validation status; data mapping; characterization suite running against legacy; evaluation results for AI extraction. |
-| **Days 61–90** | Implement one controlled modernization slice, compare results against the legacy system, measure discrepancies and operational behavior, and produce the target architecture and roadmap. | Slice running in shadow mode; reconciliation report; target and transition architecture; ADRs; prioritized roadmap with business case. |
+| **Days 1-30** | Select a bounded banking capability, inventory legacy programs and dependencies, capture risks, establish baseline metrics, and interview domain experts. | Scope signed off; inventory and dependency graph; baseline metrics; risk register; AI usage approved by security and risk. |
+| **Days 31-60** | Build an AI-assisted discovery proof of concept, catalog candidate business rules, map data and service boundaries, and produce characterization test cases. | Rule catalog with validation status; data mapping; characterization suite running against legacy; evaluation results for AI extraction. |
+| **Days 61-90** | Implement one controlled modernization slice, compare results against the legacy system, measure discrepancies and operational behavior, and produce the target architecture and roadmap. | Slice running in shadow mode; reconciliation report; target and transition architecture; ADRs; prioritized roadmap with business case. |
 
 ### Governance during the initiative
 

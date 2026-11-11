@@ -25,8 +25,8 @@ The obvious workaround is to translate the COBOL line by line into Java. That te
 I'd frame the whole program around three rules, taken from the [context document in the repo](https://github.com/wallaceespindola/banking-modernization-with-ai/blob/main/docs/banking-modernization-with-ai-context.md):
 
 - **Modernize capabilities, not code:** the unit of change is a business capability (fees, statements, payments initiation), not a program or a language.
-- **Correctness is proven, not assumed:** every slice demonstrates equivalence against the legacy system through characterization tests, parallel runs and ledger-level reconciliation.
-- **AI proposes, deterministic tooling verifies, humans approve:** AI shortens discovery and implementation, and it never becomes the authority on financial behavior.
+- **Correctness is proven, not assumed:** a slice is done when characterization tests, a parallel run and reconciliation down to the ledger show it matches the legacy system.
+- **AI proposes, deterministic tooling verifies, humans approve:** AI speeds up discovery and implementation, but it has no say on what the right financial result is.
 
 ## Decision one: pick one bounded capability
 
@@ -47,8 +47,8 @@ The controls I'd want in writing before any code reaches a model:
 
 - **Deployment:** models run inside the bank's approved perimeter, with contractual terms on data retention and training use. Under [DORA](https://eur-lex.europa.eu/eli/reg/2022/2554/oj), which has applied since 17 January 2025, the model provider is an ICT third party and gets registered as one.
 - **Data:** source code is intellectual property, and test or production samples are masked or synthetic before they reach a model.
-- **Prompt injection:** comments and strings in legacy code are untrusted input, and agents get least privilege with no write access to production.
-- **Accountability:** a named human owns each approved rule, mapping and code change. AI is recorded as an assistant, not an approver.
+- **Prompt injection:** legacy comments and string literals reach the model as untrusted text, so agents run with least privilege and cannot write to production.
+- **Accountability:** every approved rule, mapping and code change has a named person behind it. The AI's part is logged as assistance, never as approval.
 
 The dependency graph should come from deterministic parsers and static analysis, and the model explains and reasons over it. That keeps the facts reproducible and puts the uncertainty in the interpretation layer, where review happens anyway.
 
@@ -74,7 +74,7 @@ Set a baseline in the first 30 days and agree targets with stakeholders. A short
 - **Change lead time:** request to production for the migrated capability, before and after.
 - **Cost:** run cost of legacy plus new during coexistence, and what has actually been switched off.
 
-I don't have numbers from a live program to share, and I won't invent any. The point is to measure your own baseline so the next budget conversation runs on evidence.
+I have no figures from a live program, so I'm not quoting any. The point is to measure your own baseline so the next budget conversation runs on evidence.
 
 ## Where it doesn't pay off
 

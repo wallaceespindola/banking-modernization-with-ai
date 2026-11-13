@@ -282,8 +282,6 @@ Clone [the repo](https://github.com/wallaceespindola/banking-modernization-with-
 
 Which COBOL arithmetic detail has caught you out in a port, rounding, intermediate precision or something in a copybook? I'd like to hear in the comments.
 
-*I wrote this article with AI assistance, then reviewed, fact-checked and edited it myself.*
-
 **Examples repository:** every example in this article (the `ACCTREC` copybook, the `INTCALC` program, the BR-INT-001 catalog entry, the COMP-3 decoder, the interest rule and its naive port, the reconciler, the golden-master test and CSV and the diagrams) is in <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
 Need more tech insights?\

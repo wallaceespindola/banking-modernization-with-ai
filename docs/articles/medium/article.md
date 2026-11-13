@@ -12,8 +12,6 @@ Meta description: The hard part of banking modernization is the knowledge buried
 
 *By [Wallace Espindola](https://www.linkedin.com/in/wallaceespindola/), Solution Architect | [wallace.espindola@gmail.com](mailto:wallace.espindola@gmail.com) | [GitHub](https://github.com/wallaceespindola/)*
 
-*I wrote this article with AI assistance, then reviewed, fact-checked and edited it myself.*
-
 ---
 
 Picture a code review for a small piece of a bank's core. The legacy side is one COBOL statement that computes monthly interest. The new side is one line of Java that does the same arithmetic with `BigDecimal`, scale two, banker's rounding. The reviewer reads both, nods and approves. The code is clean, the types are right, nobody used `double`. It is the port most of us would accept at first glance.

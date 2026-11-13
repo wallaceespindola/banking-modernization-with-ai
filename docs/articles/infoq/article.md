@@ -200,6 +200,4 @@ Contact: [wallace.espindola@gmail.com](mailto:wallace.espindola@gmail.com) · [L
 
 ---
 
-**AI disclosure**: This article was drafted with AI assistance (Claude) for research support, outlining, drafting and editing, based on the author's own modernization context document and repository. Code, figures and regulatory references were checked against the repository and the cited sources.
-
 **Examples repository:** this article uses the rule catalog template with the BR-INT-001 entry, the illustrative `INTCALC.cbl` program, the golden-master interest tests and the reconciler from <https://github.com/wallaceespindola/banking-modernization-with-ai>.

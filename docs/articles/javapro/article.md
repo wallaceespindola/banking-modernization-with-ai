@@ -409,8 +409,6 @@ Reach him on [LinkedIn](https://www.linkedin.com/in/wallaceespindola/) or check 
 
 When you review a port of financial logic, what evidence do you ask for before you approve it?
 
-*I wrote this article with AI assistance, then reviewed, fact-checked and edited it myself.*
-
 **Examples repository:** every example in this article (the `INTCALC` program and `ACCTREC` copybook, the BR-INT-001 rule catalog entry, `PackedDecimal`, `InterestRule`, `Reconciler`, the three test classes and the illustrative golden CSV) is in <https://github.com/wallaceespindola/banking-modernization-with-ai>.
 
 Need more tech insights?\

@@ -18,4 +18,3 @@ Publishing notes:
 
 - DZone rejects AI-written text, so the author rewrites that version before submitting.
 - InfoQ asks for first publication with a 4-week exclusivity window; JavaPro content is original and never republished.
-- Dev.to, Medium and InfoQ carry an AI-assistance disclosure.

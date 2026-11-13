@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <!-- Source for golden-master-loop.png: rsvg-convert -z 2 -b white golden-master-loop.svg -o golden-master-loop.png -->
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="600" fill="#ffffff"/>
+  <text x="400" y="50" text-anchor="middle" font-size="20" font-weight="700" fill="#64748b">1. Capture the oracle</text>
+  <rect x="50" y="70" width="300" height="150" rx="16" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5" filter="url(#s)"/>
+  <text x="200.0" y="139.7" text-anchor="middle" font-size="24" font-weight="700" fill="#1e1b4b">Legacy batch run</text>
+  <text x="200.0" y="169.7" text-anchor="middle" font-size="19" fill="#4f46e5">INTCALC + ACCTREC</text>
+  <rect x="450" y="70" width="300" height="150" rx="16" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5" filter="url(#s)"/>
+  <text x="600.0" y="139.7" text-anchor="middle" font-size="24" font-weight="700" fill="#1e1b4b">Golden master</text>
+  <text x="600.0" y="169.7" text-anchor="middle" font-size="19" fill="#4f46e5">monthly-interest.csv</text>
+  <path d="M350,145 L446,145" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="400" y="290" text-anchor="middle" font-size="20" font-weight="700" fill="#64748b">2. Port the rule</text>
+  <text x="1200" y="290" text-anchor="middle" font-size="20" font-weight="700" fill="#64748b">3. Reconcile</text>
+  <rect x="50" y="310" width="300" height="150" rx="16" fill="#ecfdf9" stroke="#14b8a6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="200.0" y="379.7" text-anchor="middle" font-size="24" font-weight="700" fill="#0b3b36">Rule catalog</text>
+  <text x="200.0" y="409.7" text-anchor="middle" font-size="19" fill="#0f766e">BR-INT-001</text>
+  <rect x="450" y="310" width="300" height="150" rx="16" fill="#ecfdf9" stroke="#14b8a6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="600.0" y="379.7" text-anchor="middle" font-size="24" font-weight="700" fill="#0b3b36">InterestRule.java</text>
+  <text x="600.0" y="409.7" text-anchor="middle" font-size="19" fill="#0f766e">RoundingMode.DOWN</text>
+  <rect x="850" y="310" width="300" height="150" rx="16" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1000.0" y="367.2" text-anchor="middle" font-size="24" font-weight="700" fill="#0c4a6e">Reconciler</text>
+  <text x="1000.0" y="397.2" text-anchor="middle" font-size="19" fill="#0369a1">zero tolerance,</text>
+  <text x="1000.0" y="422.2" text-anchor="middle" font-size="19" fill="#0369a1">per account</text>
+  <rect x="1250" y="310" width="300" height="150" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1400.0" y="379.7" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Equivalent</text>
+  <text x="1400.0" y="409.7" text-anchor="middle" font-size="19" fill="#a5b4fc">the slice moves on</text>
+  <path d="M350,385 L446,385" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M750,385 L846,385" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M1150,385 L1246,385" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M750,145 L1000,145 L1000,306" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="1012" y="200" text-anchor="start" font-size="18" font-weight="400" fill="#334155" font-style="italic">expected values</text>
+  <path d="M1000,460 L1000,530 L200,530 L200,464" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#aw)"/>
+  <text x="600" y="570" text-anchor="middle" font-size="18" font-weight="400" fill="#d97706" font-style="italic">breaks: back to the catalog entry</text>
+</svg>

@@ -1,6 +1,6 @@
 <!--
 DZone submission metadata
-TL;DR: A proposed operating model for AI-assisted core banking modernization: named owners, three quality gates, a required control for every AI use case and go/no-go criteria agreed before the slice is built.
+TL;DR: A proposed operating model for AI-assisted core banking modernization: named owners, three gates, a control per AI use and go/no-go criteria set before the build.
 Article type: Analysis
 Summary (meta description): Who signs each gate when AI helps modernize a banking core: roles, exit criteria, AI controls, go/no-go rules and what to measure, as a proposed model.
 Primary zone: Software Design and Architecture. Additional zones: AI, DevOps, Java, Testing.
@@ -81,7 +81,7 @@ The exit criteria come straight from the plan:
 
 Exit criteria only help if each one has a signer. Here's how I'd assign them:
 
-![Gate sign-off map showing who signs each of the three gates and the go/no-go. The architect signs the engineering evidence and the business owner decides go/no-go with risk and compliance and operations as co-signers with a veto](diagrams/gate-signoffs.jpg)
+![Gate sign-off map with one row per gate, from gate 1 at day 30 through gate 2 and gate 3 to the go/no-go, each row showing its three signers color-coded by role: the architect signs the engineering evidence, and the business owner decides go/no-go with risk and compliance and operations as co-signers with a veto](diagrams/gate-signoffs.jpg)
 
 *Figure 2: Who signs each gate. Proposed assignment.*
 

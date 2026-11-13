@@ -1,6 +1,7 @@
 # Docs-first project: context, articles, slides and diagrams, plus small Java examples.
 PUML := $(shell find docs -name '*.puml')
 MMD  := $(shell find docs -name '*.mmd')
+SVG  := $(shell find docs -name '*.svg')
 DECK := docs/presentations/slides.md
 DECK_OUT := docs/presentations/banking-modernization-with-ai
 # Optional puppeteer config for mermaid-cli, e.g. to point at a local Chrome: make diagrams PUPPETEER=cfg.json
@@ -12,8 +13,9 @@ MMDC_FLAGS := $(if $(PUPPETEER),-p $(PUPPETEER),)
 help: ## Show targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-10s %s\n", $$1, $$2}'
 
-diagrams: ## Render all PlantUML and Mermaid sources to PNG next to their source
+diagrams: ## Render all SVG, PlantUML and Mermaid sources to PNG next to their source
 	@for f in $(PUML); do plantuml -tpng "$$f"; done
+	@for f in $(SVG); do rsvg-convert -z 2 -b white "$$f" -o "$${f%.svg}.png"; done
 	@for f in $(MMD); do npx -y @mermaid-js/mermaid-cli $(MMDC_FLAGS) -q -i "$$f" -o "$${f%.mmd}.png" -b white -s 2; done
 
 format: ## Format Markdown with Prettier (one line per paragraph)

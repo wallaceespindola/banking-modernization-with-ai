@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <!-- Source for habit-loop.png: rsvg-convert -z 2 -b white habit-loop.svg -o habit-loop.png -->
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1600" height="700" fill="#ffffff"/>
+  <rect x="20" y="20" width="800" height="240" rx="20" fill="#f5f9ff" stroke="#bfdbfe" stroke-width="2"/>
+  <text x="44" y="52" text-anchor="start" font-size="16" font-weight="700" letter-spacing="1.5" fill="#1d4ed8">BEFORE ANYONE WRITES THE PORT</text>
+  <rect x="430" y="320" width="800" height="240" rx="20" fill="#faf8ff" stroke="#ddd6fe" stroke-width="2"/>
+  <text x="1206" y="352" text-anchor="end" font-size="16" font-weight="700" letter-spacing="1.5" fill="#6d28d9">AFTER THE PORT EXISTS</text>
+  <rect x="40" y="85" width="350" height="150" rx="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5" filter="url(#s)"/>
+  <text x="215" y="143" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">1. Capture legacy outputs</text>
+  <text x="215" y="169" text-anchor="middle" font-size="18" fill="#1d4ed8">real batch run,</text>
+  <text x="215" y="194" text-anchor="middle" font-size="18" fill="#1d4ed8">masked inputs</text>
+  <rect x="450" y="85" width="350" height="150" rx="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5" filter="url(#s)"/>
+  <text x="625" y="143" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">2. Characterization tests</text>
+  <text x="625" y="169" text-anchor="middle" font-size="18" fill="#1d4ed8">the outputs become</text>
+  <text x="625" y="194" text-anchor="middle" font-size="18" fill="#1d4ed8">the expected values</text>
+  <rect x="450" y="385" width="350" height="150" rx="16" fill="#ede9fe" stroke="#6d28d9" stroke-width="2.5" filter="url(#s)"/>
+  <text x="625" y="455" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Port the rule</text>
+  <text x="625" y="481" text-anchor="middle" font-size="18" fill="#6d28d9">by a person or with AI</text>
+  <rect x="860" y="385" width="350" height="150" rx="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1035" y="455" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">3. Reconcile to the cent</text>
+  <text x="1035" y="481" text-anchor="middle" font-size="18" fill="#1d4ed8">per account and in total</text>
+  <rect x="1340" y="420" width="230" height="80" rx="16" fill="#dcfce7" stroke="#15803d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1455" y="467" text-anchor="middle" font-size="21" font-weight="700" fill="#0f172a">Slice moves on</text>
+  <path d="M390,160 L446,160" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M625,235 L625,381" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M800,460 L856,460" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M1210,460 L1336,460" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="1275" y="448" text-anchor="middle" font-size="18" font-style="italic" fill="#334155">equivalent</text>
+  <rect x="680" y="612" width="280" height="56" rx="28" fill="#fef3c7" stroke="#b45309" stroke-width="2.5" filter="url(#s)"/>
+  <text x="820" y="647" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">break: fix the port</text>
+  <path d="M1035,535 L1035,640 L964,640" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#aw)"/>
+  <path d="M680,640 L625,640 L625,539" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#aw)"/>
+</svg>

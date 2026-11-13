@@ -47,7 +47,7 @@ What is new is the middle step. Between "here is the code" and "here are the tes
 
 The pattern assigns each layer of work to the kind of tooling or person that can be held to account for it.
 
-![Three stacked layers: deterministic parsers build a dependency graph, an AI model proposes candidate rules from it and experts plus legacy tests approve them into a validated rule catalog entry.](diagrams/three-layer-pattern.jpg)
+![Three stacked layers. Facts: legacy source goes through parsers into a dependency graph. The graph feeds the AI model as reproducible facts, and an evaluation set of precision and recall gates trust in the model. The model produces a candidate rule with file and line, which goes as a proposal with provenance to domain expert sign-off, then characterization tests against legacy outputs, then reconciliation and shadow run, ending in a validated rule catalog entry.](diagrams/three-layer-pattern.jpg)
 
 *Figure 1: Facts, interpretation and approval as separate layers. Blue: deterministic tooling. Purple: AI. Green: humans and the legacy system as oracle. Amber: the artifact that records the approved rule.*
 
@@ -143,7 +143,7 @@ The useful habit is to treat regulatory evidence as a delivery output. ADRs, the
 
 Introducing AI into discovery adds risks that a purely manual or purely tool-driven program does not have. The context document pairs each one with a control.
 
-![Five AI-specific risks, each mapped to one control. All controls rest on a backstop of characterization tests, reconciliation and shadow runs.](diagrams/risk-control-map.jpg)
+![Five AI-specific risks in a row, each with an arrow down to its own control: hallucinated rules to grounding on parser output with file and line citations and expert sign-off, prompt injection to treating source as untrusted with least privilege, data leakage to an approved perimeter with masked or synthetic data, model drift to pinned model versions and a re-run evaluation set, and the accountability gap to a named human owner per rule. Every control then has an arrow into one shared backstop: characterization tests, reconciliation and shadow run.](diagrams/risk-control-map.jpg)
 
 *Figure 2: Each AI-specific risk has a direct control, and the verification layer acts as a backstop for all of them. Red: risks. Blue: controls. Green: the backstop.*
 

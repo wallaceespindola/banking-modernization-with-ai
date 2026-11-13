@@ -12,7 +12,7 @@ A docs-first project about modernizing legacy banking systems with a solution ar
 
 - `docs/banking-modernization-with-ai-context.md`: the modernization context (difficulties, strategies, architect and AI roles, testing, 90-day plan, metrics).
 - `docs/templates/rule-catalog-entry.md`: rule catalog template with the BR-INT-001 worked example.
-- `docs/diagrams/`: canonical Mermaid sources and PNGs shared by articles and slides.
+- `docs/diagrams/`: canonical SVG sources and PNGs shared by articles and slides. Draw a diagram as hand-written SVG whenever arrows must connect specific boxes: Mermaid edges between subgraphs float between groups.
 - `docs/articles/<platform>/`: `article.md`, banner, `diagrams/`. Each platform takes a different angle and title. `BANNER_DESIGN.md` and `PLATFORM_GUIDELINES.md` sit next to them.
 - `docs/presentations/`: Marp `slides.md`, exported PPTX and PDF, `GOOGLE_SLIDES.md`.
 - `examples/cobol/`: `INTCALC.cbl`, `ACCTREC.cpy` (illustrative, not compiled).
@@ -21,7 +21,7 @@ A docs-first project about modernizing legacy banking systems with a solution ar
 ## Commands
 
 ```bash
-make diagrams   # render .puml (plantuml) and .mmd (mermaid-cli) to PNG next to the source; PUPPETEER=cfg.json to use a local Chrome
+make diagrams   # render .svg (rsvg-convert), .puml (plantuml) and .mmd (mermaid-cli) to PNG; PUPPETEER=cfg.json for mermaid-cli
 make format     # Prettier, one line per paragraph
 make lint       # markdownlint-cli2, config in .markdownlint.json
 make links      # offline relative-link check (needs lychee)

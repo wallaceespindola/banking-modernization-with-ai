@@ -69,10 +69,10 @@ Sources live in `docs/presentations/diagrams/`, copied unchanged from the canoni
 
 | Diagram | Source | Render |
 |---|---|---|
-| Modernization loop | `modernization-loop.mmd` | `mmdc -i modernization-loop.mmd -o modernization-loop.png -b white -s 2` |
-| Strangler coexistence | `strangler-coexistence.mmd` | `mmdc -i strangler-coexistence.mmd -o strangler-coexistence.png -b white -s 2` |
-| AI-assisted discovery pipeline | `ai-discovery-pipeline.mmd` | `mmdc -i ai-discovery-pipeline.mmd -o ai-discovery-pipeline.png -b white -s 2` |
-| 90-day plan | `ninety-day-plan.mmd` | `mmdc -i ninety-day-plan.mmd -o ninety-day-plan.png -b white -s 2` |
+| Modernization loop | `modernization-loop.svg` | `rsvg-convert -z 2 -b white modernization-loop.svg -o modernization-loop.png` |
+| Strangler coexistence | `strangler-coexistence.svg` | `rsvg-convert -z 2 -b white strangler-coexistence.svg -o strangler-coexistence.png` |
+| AI-assisted discovery pipeline | `ai-discovery-pipeline.svg` | `rsvg-convert -z 2 -b white ai-discovery-pipeline.svg -o ai-discovery-pipeline.png` |
+| 90-day plan | `ninety-day-plan.svg` | `rsvg-convert -z 2 -b white ninety-day-plan.svg -o ninety-day-plan.png` |
 
 Edit the canonical sources in `docs/diagrams/` (`make diagrams`), then copy them here.
 

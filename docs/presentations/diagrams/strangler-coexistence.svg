@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1030" viewBox="0 0 1200 1030" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1200" height="1030" fill="#ffffff"/>
+  <rect x="430" y="30" width="340" height="110" rx="16" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5" filter="url(#s)"/>
+  <text x="600.0" y="79.0" text-anchor="middle" font-size="23" font-weight="700" fill="#0f172a">Channels and APIs</text>
+  <text x="600.0" y="109.0" text-anchor="middle" font-size="18" fill="#475569">mobile, web, branch, partners</text>
+  <rect x="430" y="200" width="340" height="110" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="600.0" y="249.0" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">API gateway / router</text>
+  <text x="600.0" y="279.0" text-anchor="middle" font-size="18" fill="#a5b4fc">per capability, instant fallback</text>
+  <rect x="40" y="370" width="340" height="110" rx="16" fill="#ecfdf9" stroke="#14b8a6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="210.0" y="419.0" text-anchor="middle" font-size="23" font-weight="700" fill="#0b3b36">New domain service</text>
+  <text x="210.0" y="449.0" text-anchor="middle" font-size="18" fill="#0f766e">modern model</text>
+  <rect x="820" y="370" width="340" height="110" rx="16" fill="#fff7ed" stroke="#f59e0b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="990.0" y="419.0" text-anchor="middle" font-size="23" font-weight="700" fill="#7c2d12">Anti-corruption layer</text>
+  <text x="990.0" y="449.0" text-anchor="middle" font-size="18" fill="#b45309">translates legacy codes</text>
+  <rect x="40" y="540" width="340" height="110" rx="16" fill="#ecfdf9" stroke="#14b8a6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="210.0" y="589.0" text-anchor="middle" font-size="23" font-weight="700" fill="#0b3b36">Service database</text>
+  <text x="210.0" y="619.0" text-anchor="middle" font-size="18" fill="#0f766e">owned by the service</text>
+  <rect x="430" y="540" width="340" height="110" rx="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="600.0" y="589.0" text-anchor="middle" font-size="23" font-weight="700" fill="#172554">Event streaming</text>
+  <text x="600.0" y="619.0" text-anchor="middle" font-size="18" fill="#1d4ed8">CDC, one writer per element</text>
+  <rect x="820" y="540" width="340" height="110" rx="16" fill="#fff7ed" stroke="#f59e0b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="990.0" y="589.0" text-anchor="middle" font-size="23" font-weight="700" fill="#7c2d12">Mainframe</text>
+  <text x="990.0" y="619.0" text-anchor="middle" font-size="18" fill="#b45309">CICS and batch</text>
+  <rect x="820" y="710" width="340" height="110" rx="16" fill="#fff7ed" stroke="#f59e0b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="990.0" y="759.0" text-anchor="middle" font-size="23" font-weight="700" fill="#7c2d12">DB2 / VSAM</text>
+  <text x="990.0" y="789.0" text-anchor="middle" font-size="18" fill="#b45309">system of record</text>
+  <rect x="430" y="880" width="340" height="110" rx="16" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5" filter="url(#s)"/>
+  <text x="600.0" y="929.0" text-anchor="middle" font-size="23" font-weight="700" fill="#1e1b4b">Reconciliation</text>
+  <text x="600.0" y="959.0" text-anchor="middle" font-size="18" fill="#4f46e5">diff engine per business date</text>
+  <path d="M600.0,140 L600.0,196" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M540.0,310 L540.0,340 L210.0,340 L210.0,366" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="375.0" y="330" text-anchor="middle" font-size="18" fill="#334155">migrated</text>
+  <path d="M660.0,310 L660.0,340 L990.0,340 L990.0,366" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="825.0" y="330" text-anchor="middle" font-size="18" fill="#334155">not yet migrated</text>
+  <path d="M990.0,480 L990.0,536" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M990.0,650 L990.0,706" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M210.0,480 L210.0,536" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M820,765.0 L600.0,765.0 L600.0,654" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="710.0" y="753.0" text-anchor="middle" font-size="18" fill="#334155">CDC events</text>
+  <path d="M600.0,540 L600.0,425.0 L384,425.0" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M40,425.0 L18,425.0 L18,935.0 L426,935.0" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#aw)"/>
+  <text x="225" y="923.0" text-anchor="middle" font-size="18" font-style="italic" fill="#d97706">shadow results</text>
+  <path d="M1160,595.0 L1182,595.0 L1182,935.0 L774,935.0" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#aw)"/>
+  <text x="975" y="923.0" text-anchor="middle" font-size="18" font-style="italic" fill="#d97706">legacy results</text>
+</svg>

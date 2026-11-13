@@ -1,36 +1,118 @@
 ---
 marp: true
-theme: gaia
+theme: default
 paginate: true
-backgroundColor: '#ffffff'
-color: '#1a2744'
+size: 16:9
+footer: 'Understand, Then Modernize'
 style: |
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root {
+    --ink: #0b1530; --text: #1e293b; --muted: #64748b; --line: #e2e8f0;
+    --accent: #4f46e5; --accent-dark: #4338ca; --accent-soft: #eef2ff; --teal: #14b8a6; --gold: #f59e0b;
+  }
   section {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 28px;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 26px; line-height: 1.5; color: var(--text);
+    padding: 64px 80px 70px;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.11), transparent 32%),
+      radial-gradient(circle at 0% 100%, rgba(20, 184, 166, 0.08), transparent 30%),
+      #f8fafc;
+    justify-content: flex-start;
   }
-  section.lead {
-    background: #0d1b3e;
-    color: #ffffff;
+  h1 {
+    position: relative; font-size: 42px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+    color: var(--ink); margin: 0 0 26px; padding-top: 22px;
   }
-  section.lead h1 { color: #4ECDC4; }
-  h1, h2 { color: #0d1b3e; }
-  h1 { font-size: 1.5em; }
-  section.lead h2 { color: #ffffff; }
-  section.lead a { color: #4ECDC4; }
-  code { font-family: 'Menlo', 'Consolas', monospace; }
-  section pre { font-size: 0.7em; }
-  table { font-size: 0.8em; }
+  h1::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 72px; height: 6px; border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--teal));
+  }
+  h2 { color: var(--ink); }
+  strong { color: var(--accent-dark); font-weight: 700; }
+  a { color: var(--accent-dark); text-decoration: none; }
+  ul { list-style: none; padding-left: 0; margin: 0 0 18px; }
+  ul > li { position: relative; padding-left: 34px; margin: 10px 0; }
+  ul > li::before {
+    content: ''; position: absolute; left: 4px; top: 0.55em; width: 12px; height: 12px; border-radius: 3px;
+    background: linear-gradient(135deg, var(--accent), var(--teal));
+  }
+  ol { list-style: none; counter-reset: step; padding-left: 0; margin: 0; }
+  ol > li { counter-increment: step; position: relative; padding-left: 60px; margin: 18px 0; }
+  ol > li::before {
+    content: counter(step); position: absolute; left: 0; top: 0; width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--teal)); color: #fff;
+    font-size: 19px; font-weight: 700; text-align: center; line-height: 40px;
+  }
+  ul + p, ol + p, table + p {
+    margin-top: 18px; padding: 16px 24px; border-left: 6px solid var(--gold); border-radius: 0 14px 14px 0;
+    background: #fff7ed; color: var(--ink); font-weight: 500;
+  }
+  code {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace; font-size: 0.86em; font-variant-ligatures: none;
+    background: var(--accent-soft); color: var(--accent-dark); padding: 2px 8px; border-radius: 6px;
+  }
+  pre {
+    background: #0f172a; border-radius: 16px; padding: 22px 28px; margin: 6px 0 0;
+    box-shadow: 0 18px 40px -18px rgba(15, 23, 42, 0.55); font-size: 0.8em; line-height: 1.5;
+  }
+  pre code { background: none; color: #e2e8f0; padding: 0; font-size: 1em; }
+  pre + p { margin-top: 18px; }
+  .hljs-keyword, .hljs-built_in { color: #c4b5fd; }
+  .hljs-title, .hljs-title.function_ { color: #5eead4; }
+  .hljs-string { color: #fcd34d; }
+  .hljs-comment { color: #94a3b8; font-style: italic; }
+  .hljs-type, .hljs-class { color: #7dd3fc; }
+  .hljs-literal, .hljs-number { color: #fda4af; }
+  table {
+    display: table; border-collapse: separate; border-spacing: 0; width: 100%; font-size: 20px;
+    border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px -18px rgba(15, 23, 42, 0.45);
+  }
+  th { background: var(--ink); color: #fff; font-weight: 600; text-align: left; padding: 8px 20px; border: none; }
+  td { background: #fff; padding: 6px 20px; border: none; border-bottom: 1px solid var(--line); }
+  tr:nth-child(even) td { background: #f1f5f9; }
+  td:first-child { font-weight: 600; color: var(--ink); }
+  footer { left: 80px; bottom: 26px; font-size: 15px; color: var(--muted); letter-spacing: 0.04em; }
+  section::after {
+    right: 64px; bottom: 22px; font-size: 15px; font-weight: 600; color: #fff;
+    background: var(--ink); border-radius: 999px; padding: 4px 14px;
+  }
   section.diagram p { text-align: center; }
-  section.code pre { font-size: 1.05em; }
+  section.diagram img {
+    background: #fff; border-radius: 18px; padding: 16px;
+    box-shadow: 0 18px 40px -20px rgba(15, 23, 42, 0.45);
+  }
+  section.diagram p:last-child:not(:has(img)) { margin-top: 20px; font-size: 24px; color: var(--ink); }
+  section.split ul { font-size: 23px; }
+  section.split ul > li { margin: 8px 0; }
+  section.lead {
+    justify-content: center; padding: 80px 110px; color: #e2e8f0;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.28), transparent 38%),
+      radial-gradient(circle at 5% 95%, rgba(99, 102, 241, 0.5), transparent 45%),
+      linear-gradient(135deg, #0b1530 0%, #131a4a 60%, #1e1b4b 100%);
+  }
+  section.lead h1 {
+    font-size: 64px; line-height: 1.1; margin-bottom: 22px; padding-top: 30px;
+    background: linear-gradient(90deg, #ffffff 0%, #c7d2fe 60%, #fde68a 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  section.lead h1::before { width: 96px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--gold), var(--teal)); }
+  section.lead h2 { color: #fde68a; font-size: 36px; font-weight: 600; margin: 0 0 24px; }
+  section.lead p { color: #cbd5e1; font-size: 25px; margin: 6px 0; }
+  section.lead strong { color: #fff; }
+  section.lead em { color: #fde68a; }
+  section.lead a { color: #a5b4fc; }
+  section.statement p { font-size: 34px; line-height: 1.45; color: #e2e8f0; }
 ---
 
 <!-- _class: lead -->
-<!-- _backgroundColor: '#0d1b3e' -->
-<!-- _color: '#ffffff' -->
 <!-- _paginate: false -->
+<!-- _footer: '' -->
 
-# Understand, Then Modernize: AI and the Solution Architect in Banking Legacy
+# Understand, Then Modernize
+
+## AI and the solution architect in banking legacy
 
 **Wallace Espindola**
 Solution Architect
@@ -121,7 +203,7 @@ And one practical corollary: decommission, don't just build. Every slice needs a
 
 # The modernization loop
 
-![h:500](diagrams/modernization-loop.png)
+![w:1060](diagrams/modernization-loop.png)
 
 <!--
 This is the loop for one capability.
@@ -150,9 +232,11 @@ A stable core ledger with a low change rate may be best left on the mainframe an
 
 ---
 
+<!-- _class: split -->
+
 # Strangler with controlled coexistence
 
-![bg right:30% contain](diagrams/strangler-coexistence.png)
+![bg right:42% contain](diagrams/strangler-coexistence.png)
 
 - **Router** switches traffic per capability, product or segment, with instant fallback
 - **Anti-corruption layer** keeps legacy codes out of the new model
@@ -210,7 +294,7 @@ Notice the pattern: AI produces a candidate, and something deterministic or some
 
 # Reference AI-assisted discovery pipeline
 
-![h:500](diagrams/ai-discovery-pipeline.png)
+![w:1000](diagrams/ai-discovery-pipeline.png)
 
 <!--
 Three layers. The dependency and data-lineage graph comes from deterministic parsers, so dependency facts are reproducible.
@@ -222,8 +306,7 @@ Build an evaluation set early, programs whose rules you already know, and measur
 ---
 
 <!-- _class: lead -->
-<!-- _backgroundColor: '#0d1b3e' -->
-<!-- _color: '#ffffff' -->
+<!-- _footer: '' -->
 
 # The guardrail
 
@@ -237,8 +320,6 @@ On governance: models run inside the bank's approved perimeter, and under DORA t
 -->
 
 ---
-
-<!-- _class: code -->
 
 # One cent: the legacy rule
 
@@ -263,8 +344,6 @@ The rule catalog entry for BR-INT-001 in the repo records that, along with the e
 -->
 
 ---
-
-<!-- _class: code -->
 
 # Two Java ports, one of them wrong
 
@@ -298,7 +377,7 @@ It is still not what the legacy system does. You only find out by comparing agai
 | ACC-0004 | 999999.99 | 4.10 | **3416.66** | 3416.67 |
 | ACC-0007 | -100.00 | 19.99 | **-1.66** | -1.67 |
 
-The other 5 accounts match. Fixture: `monthly-interest.csv`, **illustrative, worked out by hand from the COBOL semantics**.
+The other 5 accounts match. Fixture `monthly-interest.csv`, worked out by hand from the COBOL semantics.
 
 <!--
 The golden CSV has eight accounts. To be clear: it is an illustrative fixture I worked out by hand from the COBOL semantics, not output captured from a real mainframe.
@@ -326,13 +405,11 @@ The parallel run covers at least one full business cycle including month-end, an
 
 ---
 
+<!-- _class: diagram -->
+
 # A first 90-day initiative
 
-![bg right:45% contain](diagrams/ninety-day-plan.png)
-
-- **Days 1-30, scope:** one bounded capability, inventory, risks, baseline metrics
-- **Days 31-60, discover:** AI discovery PoC, rule catalog, characterization tests
-- **Days 61-90, prove:** one slice in shadow mode, reconciliation report, roadmap
+![w:640](diagrams/ninety-day-plan.png)
 
 Pick a capability **valuable enough to matter, bounded enough to finish**.
 
@@ -377,9 +454,8 @@ Regulatory details differ per institution and they change, so check DORA, EBA gu
 
 ---
 
-<!-- _class: lead -->
-<!-- _backgroundColor: '#0d1b3e' -->
-<!-- _color: '#ffffff' -->
+<!-- _class: lead statement -->
+<!-- _footer: '' -->
 
 # Key message
 
@@ -392,9 +468,8 @@ That is the greatest opportunity for a solution architect using AI. Not a faster
 ---
 
 <!-- _class: lead -->
-<!-- _backgroundColor: '#0d1b3e' -->
-<!-- _color: '#ffffff' -->
 <!-- _paginate: false -->
+<!-- _footer: '' -->
 
 # Resources
 

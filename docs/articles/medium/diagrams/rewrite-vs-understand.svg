@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <!-- Source for rewrite-vs-understand.png: rsvg-convert -z 2 -b white rewrite-vs-understand.svg -o rewrite-vs-understand.png -->
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="920" fill="#ffffff"/>
+  <rect x="610" y="30" width="380" height="80" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="800.0" y="77.2" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Same legacy program</text>
+  <rect x="60" y="170" width="680" height="720" rx="20" fill="#fdecec" stroke="#c0392b" stroke-width="2.5"/>
+  <text x="88" y="212" text-anchor="start" font-size="24" font-weight="700" fill="#c0392b">Rewrite first</text>
+  <rect x="120" y="250" width="560" height="96" rx="16" fill="#ffffff" stroke="#c0392b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="400.0" y="304.6" text-anchor="middle" font-size="22" font-weight="700" fill="#5c1a14">Translate COBOL to Java</text>
+  <path d="M400,346 L400,372" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="120" y="376" width="560" height="96" rx="16" fill="#ffffff" stroke="#c0392b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="400.0" y="430.6" text-anchor="middle" font-size="22" font-weight="700" fill="#5c1a14">Write tests from the new code</text>
+  <path d="M400,472 L400,498" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="120" y="502" width="560" height="96" rx="16" fill="#ffffff" stroke="#c0392b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="400.0" y="556.6" text-anchor="middle" font-size="22" font-weight="700" fill="#5c1a14">Cut over in one weekend</text>
+  <path d="M400,598 L400,624" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="120" y="628" width="560" height="96" rx="16" fill="#ffffff" stroke="#c0392b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="400.0" y="682.6" text-anchor="middle" font-size="22" font-weight="700" fill="#5c1a14">Find the differences in production</text>
+  <path d="M400,724 L400,750" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="120" y="754" width="560" height="96" rx="16" fill="#c0392b" stroke="#c0392b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="400.0" y="808.6" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Equivalence assumed</text>
+  <path d="M610,70 L400,70 L400,246" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="860" y="170" width="680" height="720" rx="20" fill="#eaf6ee" stroke="#2e8b57" stroke-width="2.5"/>
+  <text x="888" y="212" text-anchor="start" font-size="24" font-weight="700" fill="#2e8b57">Understand first</text>
+  <rect x="920" y="250" width="560" height="96" rx="16" fill="#ffffff" stroke="#2e8b57" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1200.0" y="304.6" text-anchor="middle" font-size="22" font-weight="700" fill="#0f3d24">Extract rules with source links</text>
+  <path d="M1200,346 L1200,372" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="920" y="376" width="560" height="96" rx="16" fill="#ffffff" stroke="#2e8b57" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1200.0" y="430.6" text-anchor="middle" font-size="22" font-weight="700" fill="#0f3d24">Domain expert sign-off</text>
+  <path d="M1200,472 L1200,498" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="920" y="502" width="560" height="96" rx="16" fill="#ffffff" stroke="#2e8b57" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1200.0" y="556.6" text-anchor="middle" font-size="22" font-weight="700" fill="#0f3d24">Legacy outputs as the test oracle</text>
+  <path d="M1200,598 L1200,624" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="920" y="628" width="560" height="96" rx="16" fill="#ffffff" stroke="#2e8b57" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1200.0" y="682.6" text-anchor="middle" font-size="22" font-weight="700" fill="#0f3d24">Shadow run and reconciliation</text>
+  <path d="M1200,724 L1200,750" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="920" y="754" width="560" height="96" rx="16" fill="#2e8b57" stroke="#2e8b57" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1200.0" y="808.6" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Equivalence proven, then decommission</text>
+  <path d="M990,70 L1200,70 L1200,246" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+</svg>

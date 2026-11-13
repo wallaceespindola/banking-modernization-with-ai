@@ -213,7 +213,7 @@ The parameterized test runs once per CSV row, so each account shows up by name i
 
 Here's the loop those tests implement:
 
-![Golden-master loop: capture the oracle from an illustrative, hand-worked legacy batch run into the golden master CSV, port the rule from the BR-INT-001 catalog entry to InterestRule.java with RoundingMode.DOWN, then reconcile with zero tolerance per account; equivalent results let the slice move on, and breaks go back to the catalog entry](diagrams/golden-master-loop.png)
+![Golden-master loop: the legacy batch run produces the golden master CSV, which feeds the reconciler its expected values; the BR-INT-001 catalog entry is ported to InterestRule.java with RoundingMode.DOWN, the reconciler checks it with zero tolerance per account, equivalent results let the slice move on, and a dashed arrow sends breaks back to the catalog entry](diagrams/golden-master-loop.png)
 
 Follow the dotted arrow when the reconciler reports a break. You don't patch the Java until the numbers match. You go back to the catalog entry, find out which rule you misunderstood, get it confirmed and then fix the port.
 

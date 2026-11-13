@@ -104,7 +104,7 @@ There is a regulatory side too. In the EU, [DORA](https://eur-lex.europa.eu/eli/
 
 When I picture the choice a bank faces with one legacy program, I see two paths that start in the same place and end very differently.
 
-![Two paths from the same legacy program. Rewrite first: translate COBOL to Java, write tests from the new code, cut over in one weekend, find the differences in production, ending with equivalence assumed. Understand first: extract rules with source links, domain expert sign-off, legacy outputs as the test oracle, shadow run and reconciliation, ending with equivalence proven, then decommission](diagrams/rewrite-vs-understand.png)
+![Two paths from the same legacy program, side by side. Rewrite first: translate COBOL to Java, write tests from the new code, cut over in one weekend, find the differences in production, ending with equivalence assumed. Understand first: extract rules with source links, domain expert sign-off, legacy outputs as the test oracle, shadow run and reconciliation, ending with equivalence proven, then decommission](diagrams/rewrite-vs-understand.png)
 
 *Same starting point, different evidence at the end. On the left, the tests describe the new code. On the right, they describe the old system.*
 

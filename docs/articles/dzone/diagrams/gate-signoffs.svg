@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <!-- Source for gate-signoffs.png and gate-signoffs.jpg: rsvg-convert -z 2 -b white gate-signoffs.svg -o gate-signoffs.png -->
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1040" fill="#ffffff"/>
+  <rect x="24" y="30" width="1552" height="192" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="44" y="46" width="330" height="160" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="209.0" y="108.2" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Gate 1, day 30</text>
+  <text x="209.0" y="138.2" text-anchor="middle" font-size="19" fill="#a5b4fc">scope and AI use</text>
+  <text x="209.0" y="163.2" text-anchor="middle" font-size="19" fill="#a5b4fc">approved</text>
+  <rect x="404" y="46" width="370" height="160" rx="16" fill="#fff3bf" stroke="#e67700" stroke-width="2.5" filter="url(#s)"/>
+  <text x="589.0" y="120.1" text-anchor="middle" font-size="22" font-weight="700" fill="#5c3d00">Business owner</text>
+  <text x="589.0" y="148.1" text-anchor="middle" font-size="19" fill="#5c3d00">signs the scope</text>
+  <rect x="799" y="46" width="370" height="160" rx="16" fill="#ffe3e3" stroke="#e03131" stroke-width="2.5" filter="url(#s)"/>
+  <text x="984.0" y="120.1" text-anchor="middle" font-size="22" font-weight="700" fill="#5c0a0a">Security and risk</text>
+  <text x="984.0" y="148.1" text-anchor="middle" font-size="19" fill="#5c0a0a">approve AI usage</text>
+  <rect x="1194" y="46" width="370" height="160" rx="16" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1379.0" y="107.6" text-anchor="middle" font-size="22" font-weight="700" fill="#1c2a5e">Architect</text>
+  <text x="1379.0" y="135.6" text-anchor="middle" font-size="19" fill="#1c2a5e">inventory, graph,</text>
+  <text x="1379.0" y="160.6" text-anchor="middle" font-size="19" fill="#1c2a5e">risk register</text>
+  <rect x="24" y="266" width="1552" height="192" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="44" y="282" width="330" height="160" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="209.0" y="356.7" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Gate 2, day 60</text>
+  <text x="209.0" y="386.7" text-anchor="middle" font-size="19" fill="#a5b4fc">rules validated</text>
+  <rect x="404" y="282" width="370" height="160" rx="16" fill="#d3f9d8" stroke="#2f9e44" stroke-width="2.5" filter="url(#s)"/>
+  <text x="589.0" y="356.1" text-anchor="middle" font-size="22" font-weight="700" fill="#0b3d17">Domain expert</text>
+  <text x="589.0" y="384.1" text-anchor="middle" font-size="19" fill="#0b3d17">approves each rule</text>
+  <rect x="799" y="282" width="370" height="160" rx="16" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5" filter="url(#s)"/>
+  <text x="984.0" y="356.1" text-anchor="middle" font-size="22" font-weight="700" fill="#1c2a5e">Architect</text>
+  <text x="984.0" y="384.1" text-anchor="middle" font-size="19" fill="#1c2a5e">data mapping, boundaries</text>
+  <rect x="1194" y="282" width="370" height="160" rx="16" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1379.0" y="331.1" text-anchor="middle" font-size="22" font-weight="700" fill="#1c2a5e">Architect</text>
+  <text x="1379.0" y="359.1" text-anchor="middle" font-size="19" fill="#1c2a5e">characterization suite</text>
+  <text x="1379.0" y="384.1" text-anchor="middle" font-size="19" fill="#1c2a5e">green on legacy</text>
+  <text x="1379.0" y="409.1" text-anchor="middle" font-size="19" fill="#1c2a5e">(engineering produces)</text>
+  <rect x="24" y="502" width="1552" height="192" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="44" y="518" width="330" height="160" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="209.0" y="580.2" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Gate 3, day 90</text>
+  <text x="209.0" y="610.2" text-anchor="middle" font-size="19" fill="#a5b4fc">zero unexplained</text>
+  <text x="209.0" y="635.2" text-anchor="middle" font-size="19" fill="#a5b4fc">breaks</text>
+  <rect x="404" y="518" width="370" height="160" rx="16" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5" filter="url(#s)"/>
+  <text x="589.0" y="579.6" text-anchor="middle" font-size="22" font-weight="700" fill="#1c2a5e">Architect</text>
+  <text x="589.0" y="607.6" text-anchor="middle" font-size="19" fill="#1c2a5e">reconciliation report</text>
+  <text x="589.0" y="632.6" text-anchor="middle" font-size="19" fill="#1c2a5e">(engineering produces)</text>
+  <rect x="799" y="518" width="370" height="160" rx="16" fill="#c5f6fa" stroke="#0c8599" stroke-width="2.5" filter="url(#s)"/>
+  <text x="984.0" y="592.1" text-anchor="middle" font-size="22" font-weight="700" fill="#06363d">Operations</text>
+  <text x="984.0" y="620.1" text-anchor="middle" font-size="19" fill="#06363d">shadow-mode behavior</text>
+  <rect x="1194" y="518" width="370" height="160" rx="16" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1379.0" y="592.1" text-anchor="middle" font-size="22" font-weight="700" fill="#1c2a5e">Architect</text>
+  <text x="1379.0" y="620.1" text-anchor="middle" font-size="19" fill="#1c2a5e">ADRs, target architecture</text>
+  <rect x="24" y="738" width="1552" height="192" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="44" y="754" width="330" height="160" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="209.0" y="828.7" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Go/no-go</text>
+  <text x="209.0" y="858.7" text-anchor="middle" font-size="19" fill="#a5b4fc">production traffic</text>
+  <rect x="404" y="754" width="370" height="160" rx="16" fill="#fff3bf" stroke="#e67700" stroke-width="2.5" filter="url(#s)"/>
+  <text x="589.0" y="828.1" text-anchor="middle" font-size="22" font-weight="700" fill="#5c3d00">Business owner</text>
+  <text x="589.0" y="856.1" text-anchor="middle" font-size="19" fill="#5c3d00">accountable</text>
+  <rect x="799" y="754" width="370" height="160" rx="16" fill="#ffe3e3" stroke="#e03131" stroke-width="2.5" filter="url(#s)"/>
+  <text x="984.0" y="828.1" text-anchor="middle" font-size="22" font-weight="700" fill="#5c0a0a">Risk and compliance</text>
+  <text x="984.0" y="856.1" text-anchor="middle" font-size="19" fill="#5c0a0a">co-signer with veto</text>
+  <rect x="1194" y="754" width="370" height="160" rx="16" fill="#c5f6fa" stroke="#0c8599" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1379.0" y="828.1" text-anchor="middle" font-size="22" font-weight="700" fill="#06363d">Operations</text>
+  <text x="1379.0" y="856.1" text-anchor="middle" font-size="19" fill="#06363d">co-signer with veto</text>
+  <!-- gate-to-gate arrows drawn after the cards so no card covers an arrowhead -->
+  <path d="M209,206 L209,278" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M209,442 L209,514" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M209,678 L209,750" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="44" y="984" width="34" height="34" rx="8" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5"/>
+  <text x="90" y="1008" text-anchor="start" font-size="19" font-weight="400" fill="#334155">Architect</text>
+  <rect x="244" y="984" width="34" height="34" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2.5"/>
+  <text x="290" y="1008" text-anchor="start" font-size="19" font-weight="400" fill="#334155">Business owner</text>
+  <rect x="496" y="984" width="34" height="34" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="2.5"/>
+  <text x="542" y="1008" text-anchor="start" font-size="19" font-weight="400" fill="#334155">Domain expert</text>
+  <rect x="737" y="984" width="34" height="34" rx="8" fill="#ffe3e3" stroke="#e03131" stroke-width="2.5"/>
+  <text x="783" y="1008" text-anchor="start" font-size="19" font-weight="400" fill="#334155">Security, risk and compliance</text>
+  <rect x="1146" y="984" width="34" height="34" rx="8" fill="#c5f6fa" stroke="#0c8599" stroke-width="2.5"/>
+  <text x="1192" y="1008" text-anchor="start" font-size="19" font-weight="400" fill="#334155">Operations</text>
+</svg>

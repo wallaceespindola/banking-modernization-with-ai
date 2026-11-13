@@ -25,7 +25,7 @@ In a bank that's not good enough. The rule that matters is the one the mainframe
 
 This issue is the coffee-length version: what the habit looks like, a one-cent example from the companion repo, when to skip it and what to try on Monday. Everything I show is in [banking-modernization-with-ai](https://github.com/wallaceespindola/banking-modernization-with-ai).
 
-![The habit loop: capture legacy outputs from a real batch run with masked inputs, turn them into characterization tests, then port the rule by a person or with AI and reconcile to the cent per account and in total. Equivalent results let the slice move on; a break sends you back to fix the port.](diagrams/habit-loop.png)
+![The habit loop in two groups. Before anyone writes the port: step 1 captures legacy outputs from a real batch run with masked inputs, and step 2 turns them into characterization tests. An arrow from step 2 leads to porting the rule, by a person or with AI, in the group after the port exists, followed by step 3, reconcile to the cent per account and in total. If equivalent, the slice moves on; a dashed loop marks a break, which goes to fixing the port and back to porting the rule.](diagrams/habit-loop.png)
 
 ## Who grades the port
 

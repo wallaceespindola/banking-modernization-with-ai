@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="840" viewBox="0 0 1500 840" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1500" height="840" fill="#ffffff"/>
+  <rect x="30" y="30" width="236" height="140" rx="16" fill="#6366f1"/>
+  <text x="148.0" y="94.0" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" opacity="0.8">Days 1-30</text>
+  <text x="148.0" y="122.0" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Scope</text>
+  <rect x="290" y="30" width="360" height="140" rx="16" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5" filter="url(#s)"/>
+  <text x="470.0" y="94.0" text-anchor="middle" font-size="23" font-weight="700" fill="#1e1b4b">One bounded capability</text>
+  <text x="470.0" y="124.0" text-anchor="middle" font-size="18" fill="#4f46e5">clear business owner</text>
+  <rect x="700" y="30" width="360" height="140" rx="16" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5" filter="url(#s)"/>
+  <text x="880.0" y="94.0" text-anchor="middle" font-size="23" font-weight="700" fill="#1e1b4b">Inventory and</text>
+  <text x="880.0" y="124.0" text-anchor="middle" font-size="18" fill="#4f46e5">dependency graph</text>
+  <rect x="1110" y="30" width="360" height="140" rx="16" fill="#eef2ff" stroke="#6366f1" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1290.0" y="94.0" text-anchor="middle" font-size="23" font-weight="700" fill="#1e1b4b">Risks and</text>
+  <text x="1290.0" y="124.0" text-anchor="middle" font-size="18" fill="#4f46e5">baseline metrics</text>
+  <path d="M650,100.0 L696,100.0" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M1060,100.0 L1106,100.0" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="30" y="240" width="236" height="140" rx="16" fill="#14b8a6"/>
+  <text x="148.0" y="304.0" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" opacity="0.8">Days 31-60</text>
+  <text x="148.0" y="332.0" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Discover</text>
+  <rect x="290" y="240" width="360" height="140" rx="16" fill="#ecfdf9" stroke="#14b8a6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="470.0" y="304.0" text-anchor="middle" font-size="23" font-weight="700" fill="#0b3b36">AI-assisted</text>
+  <text x="470.0" y="334.0" text-anchor="middle" font-size="18" fill="#0f766e">discovery PoC</text>
+  <rect x="700" y="240" width="360" height="140" rx="16" fill="#ecfdf9" stroke="#14b8a6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="880.0" y="304.0" text-anchor="middle" font-size="23" font-weight="700" fill="#0b3b36">Rule catalog with</text>
+  <text x="880.0" y="334.0" text-anchor="middle" font-size="18" fill="#0f766e">expert validation</text>
+  <rect x="1110" y="240" width="360" height="140" rx="16" fill="#ecfdf9" stroke="#14b8a6" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1290.0" y="304.0" text-anchor="middle" font-size="23" font-weight="700" fill="#0b3b36">Characterization tests</text>
+  <text x="1290.0" y="334.0" text-anchor="middle" font-size="18" fill="#0f766e">green on legacy</text>
+  <path d="M650,310.0 L696,310.0" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M1060,310.0 L1106,310.0" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="30" y="450" width="236" height="140" rx="16" fill="#d97706"/>
+  <text x="148.0" y="514.0" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" opacity="0.8">Days 61-90</text>
+  <text x="148.0" y="542.0" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Prove</text>
+  <rect x="290" y="450" width="360" height="140" rx="16" fill="#fff7ed" stroke="#f59e0b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="470.0" y="514.0" text-anchor="middle" font-size="23" font-weight="700" fill="#7c2d12">One slice in</text>
+  <text x="470.0" y="544.0" text-anchor="middle" font-size="18" fill="#b45309">shadow mode</text>
+  <rect x="700" y="450" width="360" height="140" rx="16" fill="#fff7ed" stroke="#f59e0b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="880.0" y="514.0" text-anchor="middle" font-size="23" font-weight="700" fill="#7c2d12">Reconciliation</text>
+  <text x="880.0" y="544.0" text-anchor="middle" font-size="18" fill="#b45309">report</text>
+  <rect x="1110" y="450" width="360" height="140" rx="16" fill="#fff7ed" stroke="#f59e0b" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1290.0" y="514.0" text-anchor="middle" font-size="23" font-weight="700" fill="#7c2d12">Target architecture</text>
+  <text x="1290.0" y="544.0" text-anchor="middle" font-size="18" fill="#b45309">and roadmap</text>
+  <path d="M650,520.0 L696,520.0" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M1060,520.0 L1106,520.0" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="30" y="660" width="236" height="140" rx="16" fill="#0f1b3d"/>
+  <text x="148.0" y="724.0" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" opacity="0.8">Day 90</text>
+  <text x="148.0" y="752.0" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Decide</text>
+  <rect x="1110" y="660" width="360" height="140" rx="16" fill="#0f1b3d" stroke="#0f1b3d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1290.0" y="724.0" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">Go/no-go</text>
+  <text x="1290.0" y="754.0" text-anchor="middle" font-size="18" fill="#a5b4fc">for production traffic</text>
+  <path d="M1290.0,170 L1290.0,205.0 L470.0,205.0 L470.0,236" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="723.075" y="193.0" width="313.85" height="31" rx="15.5" fill="#fff7ed" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="880.0" y="212.0" text-anchor="middle" font-size="17" fill="#b45309">gate: scope and AI use approved</text>
+  <path d="M1290.0,380 L1290.0,415.0 L470.0,415.0 L470.0,446" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="769.825" y="403.0" width="220.35000000000002" height="31" rx="15.5" fill="#fff7ed" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="880.0" y="422.0" text-anchor="middle" font-size="17" fill="#b45309">gate: rules validated</text>
+  <path d="M1290.0,590 L1290.0,656" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="1142.425" y="613.0" width="295.15000000000003" height="31" rx="15.5" fill="#fff7ed" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="1290.0" y="632.0" text-anchor="middle" font-size="17" fill="#b45309">gate: zero unexplained breaks</text>
+</svg>

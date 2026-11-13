@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="830" viewBox="0 0 1600 830" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <!-- Source for three-layer-pattern.png/.jpg: rsvg-convert -z 2 -b white three-layer-pattern.svg -o three-layer-pattern.png -->
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1600" height="830" fill="#ffffff"/>
+  <rect x="15" y="20" width="1570" height="220" rx="20" fill="#f5f9ff" stroke="#bfdbfe" stroke-width="2"/>
+  <text x="39" y="52" text-anchor="start" font-size="16" font-weight="700" letter-spacing="1.5" fill="#1d4ed8">LAYER 1: FACTS (DETERMINISTIC TOOLING)</text>
+  <rect x="15" y="310" width="1570" height="220" rx="20" fill="#faf8ff" stroke="#ddd6fe" stroke-width="2"/>
+  <text x="39" y="342" text-anchor="start" font-size="16" font-weight="700" letter-spacing="1.5" fill="#6d28d9">LAYER 2: INTERPRETATION (AI)</text>
+  <rect x="15" y="600" width="1570" height="220" rx="20" fill="#f4fdf7" stroke="#bbf7d0" stroke-width="2"/>
+  <text x="39" y="632" text-anchor="start" font-size="16" font-weight="700" letter-spacing="1.5" fill="#15803d">LAYER 3: APPROVAL (HUMANS AND THE LEGACY ORACLE)</text>
+  <rect x="35" y="100" width="320" height="120" rx="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5" filter="url(#s)"/>
+  <text x="195" y="155" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Legacy source</text>
+  <text x="195" y="181" text-anchor="middle" font-size="18" fill="#1d4ed8">COBOL, JCL, copybooks, DDL</text>
+  <rect x="415" y="100" width="320" height="120" rx="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5" filter="url(#s)"/>
+  <text x="575" y="155" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Parsers</text>
+  <text x="575" y="181" text-anchor="middle" font-size="18" fill="#1d4ed8">and static analysis</text>
+  <rect x="865" y="100" width="320" height="120" rx="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1025" y="155" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Dependency graph</text>
+  <text x="1025" y="181" text-anchor="middle" font-size="18" fill="#1d4ed8">calls and data flow</text>
+  <path d="M355,160 L411,160" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M735,160 L861,160" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="415" y="390" width="320" height="120" rx="16" fill="#ede9fe" stroke="#6d28d9" stroke-width="2.5" filter="url(#s)"/>
+  <text x="575" y="445" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Evaluation set</text>
+  <text x="575" y="471" text-anchor="middle" font-size="18" fill="#6d28d9">precision and recall</text>
+  <rect x="865" y="390" width="320" height="120" rx="16" fill="#ede9fe" stroke="#6d28d9" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1025" y="445" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Model</text>
+  <text x="1025" y="471" text-anchor="middle" font-size="18" fill="#6d28d9">reads graph and source</text>
+  <rect x="1245" y="390" width="320" height="120" rx="16" fill="#ede9fe" stroke="#6d28d9" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1405" y="445" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Candidate rule</text>
+  <text x="1405" y="471" text-anchor="middle" font-size="18" fill="#6d28d9">with file and line</text>
+  <path d="M735,450 L861,450" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#aw)"/>
+  <text x="800" y="438" text-anchor="middle" font-size="18" font-style="italic" fill="#d97706">gates trust</text>
+  <path d="M1185,450 L1241,450" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M1025,220 L1025,386" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="1041" y="281" text-anchor="start" font-size="18" font-style="italic" fill="#334155">reproducible facts</text>
+  <path d="M1405,510 L1405,676" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="1389" y="571" text-anchor="end" font-size="18" font-style="italic" fill="#334155">proposals with provenance</text>
+  <rect x="1245" y="680" width="320" height="120" rx="16" fill="#dcfce7" stroke="#15803d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1405" y="735" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Domain expert</text>
+  <text x="1405" y="761" text-anchor="middle" font-size="18" fill="#15803d">sign-off</text>
+  <rect x="865" y="680" width="320" height="120" rx="16" fill="#dcfce7" stroke="#15803d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="1025" y="735" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Characterization tests</text>
+  <text x="1025" y="761" text-anchor="middle" font-size="18" fill="#15803d">against legacy outputs</text>
+  <rect x="415" y="680" width="320" height="120" rx="16" fill="#dcfce7" stroke="#15803d" stroke-width="2.5" filter="url(#s)"/>
+  <text x="575" y="735" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Reconciliation</text>
+  <text x="575" y="761" text-anchor="middle" font-size="18" fill="#15803d">and shadow run</text>
+  <rect x="35" y="680" width="320" height="120" rx="16" fill="#fef3c7" stroke="#b45309" stroke-width="2.5" filter="url(#s)"/>
+  <text x="195" y="735" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Rule catalog entry</text>
+  <text x="195" y="761" text-anchor="middle" font-size="18" fill="#b45309">status: validated</text>
+  <path d="M1245,740 L1189,740" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M865,740 L739,740" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M415,740 L359,740" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+</svg>
